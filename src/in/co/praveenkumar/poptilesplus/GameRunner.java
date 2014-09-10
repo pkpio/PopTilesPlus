@@ -1,5 +1,7 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.helper.Param;
+import in.co.praveenkumar.poptilesplus.helper.RandIndex;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.os.AsyncTask;
 
@@ -17,18 +19,28 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 
 	@Override
 	protected Boolean doInBackground(String... params) {
-		int i = 0;
+		int count = 1;
 		while (Session.gamming) {
-			Session.cells[i].setValue(i + 1);
+			int randIndex = RandIndex.unFilled();
+			if (randIndex >= Param.cells) {
+				Session.gamming = false;
+				break;
+			}
+			Session.cells[randIndex].setValue(count);
 			publishProgress(0);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(Param.cellTime);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			i++;
+			count++;
 		}
-		return null;
+		return true;
+	}
+
+	@Override
+	protected void onPostExecute(Boolean result) {
+		MainActivity.gameover();
 	}
 
 }
