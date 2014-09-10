@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
 		gameView = new GameGridAdapter(this);
 		gridView.setAdapter(gameView);
-		
+
 		gridView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v,
@@ -47,9 +47,6 @@ public class MainActivity extends Activity {
 				}
 			}
 		});
-
-		GameRunner game = new GameRunner(gameView);
-		game.execute("");
 	}
 
 	private void init() {
@@ -60,7 +57,20 @@ public class MainActivity extends Activity {
 		gameoverView = (LinearLayout) findViewById(R.id.gameover_layout);
 		finalScoreView = (TextView) findViewById(R.id.final_score_view);
 		highScoreView = (TextView) findViewById(R.id.high_score_view);
+		gameoverView.setVisibility(LinearLayout.GONE);
 		MainActivity.context = this;
+	}
+
+	public void startGame(View v) {
+		if (v != null)
+			v.setVisibility(LinearLayout.GONE);
+		init();
+		GameRunner game = new GameRunner(gameView);
+		game.execute("");
+	}
+
+	public void restartGame(View v) {
+		startGame(null);
 	}
 
 	public static void gameover() {

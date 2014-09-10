@@ -49,6 +49,8 @@
         </GridView>
     </RelativeLayout>
 
-    <include layout="@layout/game_over_layout"/>
+    <include layout="@layout/game_start_layout" />
+
+    <include layout="@layout/game_over_layout" />
 
 </FrameLayout>
