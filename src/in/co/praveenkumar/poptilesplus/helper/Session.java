@@ -11,6 +11,8 @@ public class Session {
 	 * Current status of the game. True if Running. False if Gameover
 	 */
 	public static Boolean gamming;
+	public static int deviceWidth;
+	public static int deviceHeight;
 
 	/**
 	 * Initialize a game session.

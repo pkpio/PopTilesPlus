@@ -2,17 +2,21 @@ package in.co.praveenkumar.poptilesplus;
 
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class GameGridAdapter extends BaseAdapter {
 	private Context context;
+	private int scoreHeight;
 
 	public GameGridAdapter(Context context) {
 		this.context = context;
+		this.scoreHeight = dpToPx(30);
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -25,6 +29,10 @@ public class GameGridAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			viewHolder.cellValue = (TextView) convertView
 					.findViewById(R.id.number);
+			LayoutParams params = viewHolder.cellValue.getLayoutParams();
+			// I have no idea why 6
+			params.height = (int) (Session.deviceHeight - scoreHeight) / 6;
+			viewHolder.cellValue.setLayoutParams(params);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -52,6 +60,14 @@ public class GameGridAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		return 0;
+	}
+
+	public int dpToPx(int dp) {
+		DisplayMetrics displayMetrics = context.getResources()
+				.getDisplayMetrics();
+		int px = Math.round(dp
+				* (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+		return px;
 	}
 
 	static class ViewHolder {

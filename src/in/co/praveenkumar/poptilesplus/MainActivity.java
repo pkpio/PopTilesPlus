@@ -7,6 +7,7 @@ import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -54,11 +55,18 @@ public class MainActivity extends Activity {
 		for (int i = 0; i < Param.cells; i++)
 			cells[i] = new Cell();
 		Session.init(cells, (TextView) findViewById(R.id.score_view));
+		
 		gameoverView = (LinearLayout) findViewById(R.id.gameover_layout);
 		finalScoreView = (TextView) findViewById(R.id.final_score_view);
 		highScoreView = (TextView) findViewById(R.id.high_score_view);
 		gameoverView.setVisibility(LinearLayout.GONE);
+		
 		MainActivity.context = this;
+		
+		DisplayMetrics displayMetrics = context.getResources()
+				.getDisplayMetrics();
+		Session.deviceWidth = displayMetrics.widthPixels;
+		Session.deviceHeight = displayMetrics.heightPixels;
 	}
 
 	public void startGame(View v) {

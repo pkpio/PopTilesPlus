@@ -4,18 +4,31 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:orientation="vertical" >
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:columnWidth="50dp"
+            android:gravity="center"
+            android:numColumns="4"
+            android:stretchMode="columnWidth" >
+        </GridView>
 
         <LinearLayout
             android:id="@+id/score_layout"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="fill_parent"
             android:background="@android:color/black"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_gravity="bottom" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,20 +47,7 @@
                 android:textColor="#ffffff"
                 android:textSize="30sp" />
         </LinearLayout>
-
-        <GridView
-            android:id="@+id/gridView1"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@+id/score_layout"
-            android:layout_centerInParent="true"
-            android:background="#000000"
-            android:columnWidth="50dp"
-            android:gravity="center"
-            android:numColumns="4"
-            android:stretchMode="columnWidth" >
-        </GridView>
-    </RelativeLayout>
+    </LinearLayout>
 
     <include layout="@layout/game_start_layout" />
 
