@@ -1,9 +1,11 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -13,6 +15,8 @@ public class MainActivity extends Activity {
 	GameGridAdapter gameView;
 	static LinearLayout gameoverView;
 	static TextView finalScoreView;
+	static TextView highScoreView;
+	static Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +39,16 @@ public class MainActivity extends Activity {
 		Session.init(cells, (TextView) findViewById(R.id.score_view));
 		gameoverView = (LinearLayout) findViewById(R.id.gameover_layout);
 		finalScoreView = (TextView) findViewById(R.id.final_score_view);
+		highScoreView = (TextView) findViewById(R.id.high_score_view);
+		MainActivity.context = this;
 	}
 
 	public static void gameover() {
 		gameoverView.setVisibility(LinearLayout.VISIBLE);
 		finalScoreView.setText(Session.score() + "");
+		Database db = new Database(context);
+		if (db.getHighscore() < Session.score())
+			db.setHighscore(Session.score());
+		highScoreView.setText(db.getHighscore() + "");
 	}
 }

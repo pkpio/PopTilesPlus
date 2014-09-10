@@ -24,6 +24,7 @@ public class Session {
 		Session.cells = cells;
 		Session.scoreView = scoreView;
 		Session.gamming = true;
+		Session.score = 0;
 	}
 
 	/**
