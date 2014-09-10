@@ -7,6 +7,9 @@ import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,6 +30,23 @@ public class MainActivity extends Activity {
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
 		gameView = new GameGridAdapter(this);
 		gridView.setAdapter(gameView);
+		
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				TextView cellText = (TextView) v.findViewById(R.id.number);
+				if (Session.score() + 1 == Session.cells[position].getValue()
+						&& Session.gamming) {
+					Session.setScore(Session.score() + 1);
+					Session.cells[position].setFilled(false);
+					cellText.setVisibility(TextView.INVISIBLE);
+				} else {
+					Session.gamming = false;
+					MainActivity.gameover();
+				}
+			}
+		});
 
 		GameRunner game = new GameRunner(gameView);
 		game.execute("");
