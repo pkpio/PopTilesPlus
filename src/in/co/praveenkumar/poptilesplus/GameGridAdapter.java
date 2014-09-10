@@ -41,12 +41,14 @@ public class GameGridAdapter extends BaseAdapter {
 
 			@Override
 			public void onClick(View arg0) {
-				if (Session.score() + 1 == Session.cells[position].getValue()) {
+				if (Session.score() + 1 == Session.cells[position].getValue()
+						&& Session.gamming) {
 					Session.setScore(Session.score() + 1);
 					Session.cells[position].setFilled(false);
 					viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 				} else {
 					Session.gamming = false;
+					MainActivity.gameover();
 				}
 			}
 		});

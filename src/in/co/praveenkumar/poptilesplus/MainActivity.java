@@ -6,10 +6,13 @@ import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	GameGridAdapter gameView;
+	static LinearLayout gameoverView;
+	static TextView finalScoreView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +33,12 @@ public class MainActivity extends Activity {
 		for (int i = 0; i < Param.cells; i++)
 			cells[i] = new Cell();
 		Session.init(cells, (TextView) findViewById(R.id.score_view));
+		gameoverView = (LinearLayout) findViewById(R.id.gameover_layout);
+		finalScoreView = (TextView) findViewById(R.id.final_score_view);
+	}
+
+	public static void gameover() {
+		gameoverView.setVisibility(LinearLayout.VISIBLE);
+		finalScoreView.setText(Session.score() + "");
 	}
 }
