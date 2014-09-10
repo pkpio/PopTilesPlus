@@ -24,11 +24,11 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 			cells[i].setValue(i);
 			publishProgress(0);
 			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
+				Thread.sleep(1000);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			i++;
 		}
 		return null;
 	}

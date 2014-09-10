@@ -17,25 +17,22 @@ public class GameGridAdapter extends BaseAdapter {
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-
+		ViewHolder viewHolder;
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		View gridView;
-
 		if (convertView == null) {
-			gridView = new View(context);
-			gridView = inflater.inflate(R.layout.number_layout, null);
-
-			// set value into textview
-			TextView textView = (TextView) gridView.findViewById(R.id.number);
-			textView.setText(cells[position].getValue() + "");
-
+			convertView = inflater.inflate(R.layout.number_layout, null);
+			viewHolder = new ViewHolder();
+			viewHolder.cellValue = (TextView) convertView
+					.findViewById(R.id.number);
+			convertView.setTag(viewHolder);
 		} else {
-			gridView = (View) convertView;
+			viewHolder = (ViewHolder) convertView.getTag();
 		}
+		viewHolder.cellValue.setText(cells[position].getValue() + "");
 
-		return gridView;
+		return convertView;
 	}
 
 	@Override
@@ -57,6 +54,10 @@ public class GameGridAdapter extends BaseAdapter {
 	public void notifyDataSetChanged() {
 		this.cells = MainActivity.cells;
 		super.notifyDataSetChanged();
+	}
+
+	static class ViewHolder {
+		TextView cellValue;
 	}
 
 }
