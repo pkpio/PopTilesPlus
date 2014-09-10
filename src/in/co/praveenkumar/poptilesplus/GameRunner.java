@@ -1,27 +1,25 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.os.AsyncTask;
 
 public class GameRunner extends AsyncTask<String, Integer, Boolean> {
-	private Cell[] cells;
 	private GameGridAdapter gameView;
 
-	public GameRunner(Cell[] cells, GameGridAdapter gameView) {
-		this.cells = cells;
+	public GameRunner(GameGridAdapter gameView) {
 		this.gameView = gameView;
 	}
 
 	@Override
 	protected void onProgressUpdate(Integer... progress) {
-		MainActivity.cells = this.cells;
 		gameView.notifyDataSetChanged();
 	}
 
 	@Override
 	protected Boolean doInBackground(String... params) {
 		int i = 0;
-		while (i < 20) {
-			cells[i].setValue(i);
+		while (Session.gamming) {
+			Session.cells[i].setValue(i);
 			publishProgress(0);
 			try {
 				Thread.sleep(1000);

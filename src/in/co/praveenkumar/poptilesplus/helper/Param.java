@@ -1,4 +1,4 @@
-package in.co.praveenkumar.poptilesplus;
+package in.co.praveenkumar.poptilesplus.helper;
 
 public class Param {
 	public static final int colums = 4;

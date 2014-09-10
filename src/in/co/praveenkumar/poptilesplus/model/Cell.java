@@ -1,4 +1,4 @@
-package in.co.praveenkumar.poptilesplus;
+package in.co.praveenkumar.poptilesplus.model;
 
 public class Cell {
 	int value = 0;

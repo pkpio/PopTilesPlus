@@ -1,23 +1,23 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class GameGridAdapter extends BaseAdapter {
 	private Context context;
-	public Cell[] cells;
 
-	public GameGridAdapter(Context context, Cell[] cells) {
+	public GameGridAdapter(Context context) {
 		this.context = context;
-		this.cells = cells;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder viewHolder;
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		final ViewHolder viewHolder;
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -30,18 +30,33 @@ public class GameGridAdapter extends BaseAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		if (cells[position].isFilled()) {
+		if (Session.cells[position].isFilled()) {
 			viewHolder.cellValue.setVisibility(TextView.VISIBLE);
-			viewHolder.cellValue.setText(cells[position].getValue() + "");
+			viewHolder.cellValue.setText(Session.cells[position].getValue()
+					+ "");
 		} else
 			viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+
+		convertView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				if (Session.score() + 1 == Session.cells[position].getValue()) {
+					Session.setScore(Session.score() + 1);
+					Session.cells[position].setFilled(false);
+					viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+				} else {
+					Session.gamming = false;
+				}
+			}
+		});
 
 		return convertView;
 	}
 
 	@Override
 	public int getCount() {
-		return cells.length;
+		return Session.cells.length;
 	}
 
 	@Override
@@ -52,12 +67,6 @@ public class GameGridAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		return 0;
-	}
-
-	@Override
-	public void notifyDataSetChanged() {
-		this.cells = MainActivity.cells;
-		super.notifyDataSetChanged();
 	}
 
 	static class ViewHolder {
