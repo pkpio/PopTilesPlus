@@ -30,7 +30,10 @@ public class GameGridAdapter extends BaseAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		viewHolder.cellValue.setText(cells[position].getValue() + "");
+		if (cells[position].isFilled())
+			viewHolder.cellValue.setText(cells[position].getValue() + "");
+		else
+			viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 
 		return convertView;
 	}

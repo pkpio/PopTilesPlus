@@ -7,30 +7,32 @@ public class Cell {
 	/**
 	 * Get the cell value
 	 * 
-	 * @return
+	 * @return cellValue
 	 */
 	public int getValue() {
 		return value;
 	}
 
 	/**
-	 * Get the filled state
+	 * Get the value of the cell. This will also update the state to filled.
 	 * 
-	 * @return
 	 */
 	public void setValue(int value) {
 		this.value = value;
+		this.filled = true;
 	}
 
 	/**
-	 * Set the cell value
+	 * Check if this cell is filled
+	 * 
+	 * @return filledState
 	 */
-	public Boolean getFilled() {
+	public Boolean isFilled() {
 		return filled;
 	}
 
 	/**
-	 * Get the filled state
+	 * Get the filled state. Used after user clicks the cell
 	 */
 	public void setFilled(Boolean filled) {
 		this.filled = filled;
