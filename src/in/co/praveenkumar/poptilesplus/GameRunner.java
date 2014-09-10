@@ -19,7 +19,7 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	protected Boolean doInBackground(String... params) {
 		int i = 0;
 		while (Session.gamming) {
-			Session.cells[i].setValue(i);
+			Session.cells[i].setValue(i + 1);
 			publishProgress(0);
 			try {
 				Thread.sleep(1000);
