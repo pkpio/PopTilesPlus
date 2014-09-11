@@ -33,7 +33,16 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 			Session.cells[randIndex].setValue(count);
 			publishProgress(0);
 			try {
-				cellTime = Param.cellTime - count;
+				// Speed adjustments
+				if (count < 20)
+					cellTime = Param.cellTime - count * 4;
+				else if (count < 40)
+					cellTime = Param.cellTime - 80 - (count - 20) * 3;
+				else if (count < 80)
+					cellTime = Param.cellTime - 140 - (count - 40) * 2;
+				else
+					cellTime = Param.cellTime - 220 - (count - 80);
+
 				cellTime = (Param.minCellTime < cellTime) ? cellTime
 						: Param.minCellTime;
 				Thread.sleep(cellTime);
