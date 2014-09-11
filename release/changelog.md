@@ -1,3 +1,7 @@
+V2.2
+-------
+	- Game speed revised
+
 V2.1
 --------
 	- Fixed illegal state exception with leadboards opening on not connected
