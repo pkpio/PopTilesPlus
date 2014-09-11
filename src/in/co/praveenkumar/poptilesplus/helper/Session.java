@@ -1,12 +1,14 @@
 package in.co.praveenkumar.poptilesplus.helper;
 
 import in.co.praveenkumar.poptilesplus.model.Cell;
+import android.graphics.Typeface;
 import android.widget.TextView;
 
 public class Session {
 	private static int score = 0;
 	private static TextView scoreView = null;
 	public static Cell[] cells = new Cell[Param.cells];
+	public static Typeface font;
 	/**
 	 * Current status of the game. True if Running. False if Gameover
 	 */
