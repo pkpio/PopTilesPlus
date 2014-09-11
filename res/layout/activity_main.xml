@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:background="#000000"
             android:columnWidth="50dp"
+            android:descendantFocusability="blocksDescendants"
             android:gravity="center"
             android:numColumns="4"
             android:stretchMode="columnWidth" >

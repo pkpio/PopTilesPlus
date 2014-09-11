@@ -41,6 +41,7 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	@Override
 	protected void onPostExecute(Boolean result) {
 		MainActivity.gameover();
+		
 	}
 
 }

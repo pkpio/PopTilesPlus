@@ -4,11 +4,11 @@ import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import in.co.praveenkumar.poptilesplus.model.Cell;
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +19,10 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import com.google.android.gms.games.Games;
+import com.google.example.games.basegameutils.BaseGameActivity;
+
+public class MainActivity extends BaseGameActivity {
 	GameGridAdapter gameView;
 	static LinearLayout gameoverView;
 	static TextView finalScoreView;
@@ -88,6 +91,13 @@ public class MainActivity extends Activity {
 
 	public void restartGame(View v) {
 		startGame(null);
+		if (getApiClient().isConnected()) {
+			long score = 22;
+			Games.Leaderboards.submitScoreImmediate(getApiClient(),
+					getString(R.string.leaderboard_regular), score);
+			if (isSignedIn())
+				Log.d("Lolly", "signed in!");
+		}
 	}
 
 	public static void gameover() {
@@ -128,5 +138,22 @@ public class MainActivity extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	@Override
+	public void onSignInFailed() {
+		System.out.println("Damn login failed!");
+
+	}
+
+	@Override
+	public void onSignInSucceeded() {
+		System.out.println("Yo logged in!");
+
+	}
+
+	public void showAchievements(View v) {
+		startActivityForResult(
+				Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 	}
 }
