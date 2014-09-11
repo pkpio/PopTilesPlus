@@ -7,14 +7,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
+        android:background="@color/game_bg"
         android:orientation="vertical" >
 
         <GridView
             android:id="@+id/gridView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000"
+            android:background="@color/game_bg"
             android:columnWidth="50dp"
             android:descendantFocusability="blocksDescendants"
             android:gravity="center"
@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="bottom"
-            android:background="@android:color/black"
+            android:background="@color/game_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal" >
 
@@ -35,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="SCORE:"
-                android:textColor="#ffffff"
+                android:text="@string/game_score_title"
+                android:textColor="@color/game_text"
                 android:textSize="30sp" />
 
             <TextView
@@ -44,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
-                android:text="0"
-                android:textColor="#ffffff"
+                android:text="@string/game_score_sample"
+                android:textColor="@color/game_text"
                 android:textSize="30sp" />
         </LinearLayout>
     </LinearLayout>

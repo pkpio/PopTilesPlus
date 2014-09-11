@@ -3,7 +3,7 @@
     android:id="@+id/gameover_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aa000000"
+    android:background="@color/gameover_popupbg"
     android:clickable="true"
     android:gravity="center"
     android:orientation="vertical"
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="200"
-        android:textColor="@android:color/white"
+        android:text="@string/gameover_score_sample"
+        android:textColor="@color/gameover_poptext"
         android:textSize="50sp"
         android:textStyle="bold" />
 
@@ -28,31 +28,57 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Best: "
-            android:textColor="@android:color/white"
+            android:text="@string/gameover_best_title"
+            android:textColor="@color/gameover_poptext"
             android:textSize="30sp" />
 
         <TextView
             android:id="@+id/high_score_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="200"
-            android:textColor="@android:color/white"
+            android:text="@string/gameover_best_sample"
+            android:textColor="@color/gameover_poptext"
             android:textSize="30sp" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gameover"
-        android:textColor="@android:color/white"
+        android:text="@string/gameover_gameovertext"
+        android:textColor="@color/gameover_poptext"
         android:textSize="40sp" />
 
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="30dp"
-        android:onClick="restartGame"
-        android:src="@drawable/replay" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="showAchievements"
+            android:src="@drawable/icon_achievement" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="restartGame"
+            android:src="@drawable/icon_refresh" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="showLeaderBoards"
+            android:src="@drawable/icon_leaderboard" />
+    </LinearLayout>
 
 </LinearLayout>

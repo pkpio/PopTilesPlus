@@ -11,19 +11,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TAP TO PLAY"
-        android:textColor="@android:color/white"
+        android:text="@string/gamestart_start_text"
+        android:textColor="@color/gamestart_poptext"
         android:textSize="40sp" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="showAchievements"
-        android:text="Achievements" />
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="showAchievements"
+            android:src="@drawable/icon_achievement" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="showLeaderBoards"
+            android:src="@drawable/icon_leaderboard" />
+    </LinearLayout>
 
 </LinearLayout>

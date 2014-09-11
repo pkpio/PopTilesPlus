@@ -72,12 +72,13 @@ public class MainActivity extends BaseGameActivity {
 
 	public void restartGame(View v) {
 		startGame(null);
-		if (getApiClient().isConnected()) {
+		if (isSignedIn()) {
 			long score = 22;
-			Games.Leaderboards.submitScoreImmediate(getApiClient(),
-					getString(R.string.leaderboard_regular), score);
-			if (isSignedIn())
-				Log.d("Lolly", "signed in!");
+			Log.d("Scores submit", "Submit requested!");
+			Games.Leaderboards.submitScore(getApiClient(),
+					getString(R.string.leaderboard_geek), score);
+			Games.Achievements.unlock(getApiClient(),
+					getString(R.string.achievement_begginer));
 		}
 	}
 
@@ -136,5 +137,10 @@ public class MainActivity extends BaseGameActivity {
 	public void showAchievements(View v) {
 		startActivityForResult(
 				Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+	}
+
+	public void showLeaderBoards(View v) {
+		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+				getApiClient(), getString(R.string.leaderboard_geek)), 2);
 	}
 }

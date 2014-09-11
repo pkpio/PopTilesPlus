@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="gamestart_popupbg">#000000</color>
+    <color name="gamestart_poptext">#ffffff</color>
+    <color name="gameover_popupbg">#ccffffff</color>
+    <color name="gameover_poptext">#000000</color>
+    <color name="game_bg">#000000</color>
+    <color name="game_text">#ffffff</color>
+
+</resources>

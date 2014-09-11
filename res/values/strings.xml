@@ -8,4 +8,18 @@
     <string name="mode_hexa">Hexadecimal</string>
     <string name="mode_decimal">Decimal</string>
 
+    <!-- In game -->
+    <string name="game_score_title">Score: </string>
+    <string name="game_score_sample">0</string>
+    <string name="game_best_title">Best: </string>
+
+    <!-- Game start -->
+    <string name="gamestart_start_text">TAP TO PLAY</string>
+
+    <!-- Game end -->
+    <string name="gameover_gameovertext">Gameover</string>
+    <string name="gameover_best_title">Best: </string>
+    <string name="gameover_best_sample">200</string>
+    <string name="gameover_score_sample">20</string>
+
 </resources>

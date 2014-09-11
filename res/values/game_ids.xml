@@ -5,5 +5,10 @@
     <string name="leaderboard_regular">CggI0a-p5CkQAhAB</string>
     <string name="leaderboard_geek">CggI0a-p5CkQAhAC</string>
     <string name="leaderboard_programmer">CggI0a-p5CkQAhAD</string>
+    <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
+    <string name="achievement_begginer">CggI0a-p5CkQAhAI</string>
+    <string name="achievement_regular">CggI0a-p5CkQAhAJ</string>
+    <string name="achievement_pro">CggI0a-p5CkQAhAK</string>
+    <string name="achievement_ninja">CggI0a-p5CkQAhAL</string>
 
 </resources>
