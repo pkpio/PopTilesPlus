@@ -4,5 +4,8 @@
     <string name="app_name">Pop Tiles Plus</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <string name="mode_binary">Binary</string>
+    <string name="mode_hexa">Hexadecimal</string>
+    <string name="mode_decimal">Decimal</string>
 
 </resources>

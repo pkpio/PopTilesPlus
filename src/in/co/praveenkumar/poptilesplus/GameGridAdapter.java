@@ -1,5 +1,6 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.helper.NumberFormat;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -40,8 +41,8 @@ public class GameGridAdapter extends BaseAdapter {
 		}
 		if (Session.cells[position].isFilled()) {
 			viewHolder.cellValue.setVisibility(TextView.VISIBLE);
-			viewHolder.cellValue.setText(Session.cells[position].getValue()
-					+ "");
+			viewHolder.cellValue.setText(NumberFormat
+					.out(Session.cells[position].getValue()));
 		} else
 			viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 

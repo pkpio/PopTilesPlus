@@ -4,10 +4,14 @@ import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import in.co.praveenkumar.poptilesplus.model.Cell;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,7 +19,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MainActivity extends NavigationDrawer {
+public class MainActivity extends Activity {
 	GameGridAdapter gameView;
 	static LinearLayout gameoverView;
 	static TextView finalScoreView;
@@ -24,8 +28,8 @@ public class MainActivity extends NavigationDrawer {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		setContentView(R.layout.activity_main);
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 		init();
 
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
@@ -93,5 +97,36 @@ public class MainActivity extends NavigationDrawer {
 		if (db.getHighscore() < Session.score())
 			db.setHighscore(Session.score());
 		highScoreView.setText(db.getHighscore() + "");
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.layout.menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.mode_bin:
+			if (!Session.gamming)
+				Session.gameMode = Session.GAME_MODE_BIN;
+			return true;
+
+		case R.id.mode_dec:
+			if (!Session.gamming)
+				Session.gameMode = Session.GAME_MODE_DEC;
+			return true;
+
+		case R.id.mode_hex:
+			if (!Session.gamming)
+				Session.gameMode = Session.GAME_MODE_HEX;
+			return true;
+
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 }
