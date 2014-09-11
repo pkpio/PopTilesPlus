@@ -1,5 +1,6 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.MainActivity.GamePlayService;
 import in.co.praveenkumar.poptilesplus.helper.NumberFormat;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
@@ -16,9 +17,11 @@ import android.widget.TextView;
 public class GameGridAdapter extends BaseAdapter {
 	private Context context;
 	private int scoreHeight;
+	private GamePlayService playService;
 
-	public GameGridAdapter(Context context) {
+	public GameGridAdapter(Context context, GamePlayService playService) {
 		this.context = context;
+		this.playService = playService;
 		this.scoreHeight = dpToPx(30);
 	}
 
@@ -49,6 +52,7 @@ public class GameGridAdapter extends BaseAdapter {
 					} else {
 						Session.gamming = false;
 						MainActivity.gameover();
+						playService.submitScore(Session.score());
 					}
 					return false;
 				}

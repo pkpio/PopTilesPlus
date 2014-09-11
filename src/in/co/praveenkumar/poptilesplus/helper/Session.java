@@ -38,6 +38,7 @@ public class Session {
 		Session.scoreView = scoreView;
 		Session.gamming = true;
 		Session.score = 0;
+		scoreView.setText("0");
 	}
 
 	/**

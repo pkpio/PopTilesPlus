@@ -1,5 +1,6 @@
 package in.co.praveenkumar.poptilesplus;
 
+import in.co.praveenkumar.poptilesplus.MainActivity.GamePlayService;
 import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.RandIndex;
 import in.co.praveenkumar.poptilesplus.helper.Session;
@@ -7,9 +8,11 @@ import android.os.AsyncTask;
 
 public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	private GameGridAdapter gameView;
+	private GamePlayService playService;
 
-	public GameRunner(GameGridAdapter gameView) {
+	public GameRunner(GameGridAdapter gameView, GamePlayService playService) {
 		this.gameView = gameView;
+		this.playService = playService;
 	}
 
 	@Override
@@ -41,7 +44,7 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	@Override
 	protected void onPostExecute(Boolean result) {
 		MainActivity.gameover();
-		
+		playService.submitScore(Session.score());
 	}
 
 }

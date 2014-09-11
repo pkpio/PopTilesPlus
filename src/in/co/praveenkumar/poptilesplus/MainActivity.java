@@ -26,6 +26,7 @@ public class MainActivity extends BaseGameActivity {
 	static TextView finalScoreView;
 	static TextView highScoreView;
 	static Context context;
+	private GamePlayService playService = new GamePlayService();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends BaseGameActivity {
 		init();
 
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
-		gameView = new GameGridAdapter(this);
+		gameView = new GameGridAdapter(this, playService);
 		gridView.setAdapter(gameView);
 	}
 
@@ -66,20 +67,12 @@ public class MainActivity extends BaseGameActivity {
 		if (v != null)
 			v.setVisibility(LinearLayout.GONE);
 		init();
-		GameRunner game = new GameRunner(gameView);
+		GameRunner game = new GameRunner(gameView, playService);
 		game.execute("");
 	}
 
 	public void restartGame(View v) {
 		startGame(null);
-		if (isSignedIn()) {
-			long score = 22;
-			Log.d("Scores submit", "Submit requested!");
-			Games.Leaderboards.submitScore(getApiClient(),
-					getString(R.string.leaderboard_geek), score);
-			Games.Achievements.unlock(getApiClient(),
-					getString(R.string.achievement_begginer));
-		}
 	}
 
 	public static void gameover() {
@@ -140,7 +133,62 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public void showLeaderBoards(View v) {
-		startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-				getApiClient(), getString(R.string.leaderboard_geek)), 2);
+		switch (Session.gameMode) {
+		case Session.GAME_MODE_BIN:
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+					getApiClient(), getString(R.string.leaderboard_geek)), 2);
+			break;
+		case Session.GAME_MODE_DEC:
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+					getApiClient(), getString(R.string.leaderboard_regular)), 3);
+			break;
+		case Session.GAME_MODE_HEX:
+			startActivityForResult(
+					Games.Leaderboards.getLeaderboardIntent(getApiClient(),
+							getString(R.string.leaderboard_programmer)), 4);
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * For all Google play services related actions
+	 * 
+	 * @author Praveen Kumar Pendyala (praveen@praveenkumar.co.in)
+	 * 
+	 */
+	class GamePlayService {
+		public void submitScore(long score) {
+			if (!isSignedIn())
+				return;
+
+			switch (Session.gameMode) {
+			case Session.GAME_MODE_BIN:
+				Log.d("Scores submit", "Submit requested!");
+				Games.Leaderboards.submitScore(getApiClient(),
+						getString(R.string.leaderboard_geek), score);
+				break;
+			case Session.GAME_MODE_DEC:
+				Log.d("Scores submit", "Submit requested!");
+				Games.Leaderboards.submitScore(getApiClient(),
+						getString(R.string.leaderboard_regular), score);
+				break;
+			case Session.GAME_MODE_HEX:
+				Log.d("Scores submit", "Submit requested!");
+				Games.Leaderboards.submitScore(getApiClient(),
+						getString(R.string.leaderboard_programmer), score);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+		public void unLockAchievement(int id) {
+			if (isSignedIn())
+				Games.Achievements.unlock(getApiClient(), getString(id));
+		}
 	}
 }
