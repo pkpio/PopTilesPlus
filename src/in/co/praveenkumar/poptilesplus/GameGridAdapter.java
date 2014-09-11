@@ -5,7 +5,9 @@ import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
@@ -36,6 +38,21 @@ public class GameGridAdapter extends BaseAdapter {
 			params.height = (int) (Session.deviceHeight - scoreHeight) / 6;
 			viewHolder.cellValue.setLayoutParams(params);
 			convertView.setTag(viewHolder);
+			convertView.setOnTouchListener(new OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					if (Session.score() + 1 == Session.cells[position]
+							.getValue() && Session.gamming) {
+						Session.setScore(Session.score() + 1);
+						Session.cells[position].setFilled(false);
+						viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+					} else {
+						Session.gamming = false;
+						MainActivity.gameover();
+					}
+					return false;
+				}
+			});
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
