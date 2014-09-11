@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
@@ -71,6 +72,7 @@ public class MainActivity extends BaseGameActivity {
 		if (v != null)
 			v.setVisibility(LinearLayout.GONE);
 		init();
+		Session.gamming = true;
 		GameRunner game = new GameRunner(gameView, playService);
 		game.execute("");
 	}
@@ -131,11 +133,21 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public void showAchievements(View v) {
-		startActivityForResult(
-				Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+		if (getApiClient().isConnected())
+			startActivityForResult(
+					Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+		else
+			Toast.makeText(this, "Connect to Playservices first",
+					Toast.LENGTH_LONG).show();
 	}
 
 	public void showLeaderBoards(View v) {
+		if (!getApiClient().isConnected()) {
+			Toast.makeText(this, "Connect to Playservices first",
+					Toast.LENGTH_LONG).show();
+			return;
+		}
+
 		switch (Session.gameMode) {
 		case Session.GAME_MODE_BIN:
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(

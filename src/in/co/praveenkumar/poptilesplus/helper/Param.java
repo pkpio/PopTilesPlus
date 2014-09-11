@@ -8,10 +8,14 @@ public class Param {
 	 * Time (in milliseconds) after which screen will be filled with tiles if
 	 * user hasn't interacted at all.
 	 */
-	public static final int fillTime = 8000;
+	public static final int fillTime = 10000;
 	/**
 	 * Time (in milliseconds) after which the next cell appears
 	 */
 	public static final int cellTime = fillTime / cells;
+	/**
+	 * Min cell time (in milliseconds) after which speed won't change
+	 */
+	public static final int minCellTime = 50;
 
 }

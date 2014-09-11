@@ -23,6 +23,7 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	@Override
 	protected Boolean doInBackground(String... params) {
 		int count = 1;
+		long cellTime = 0;
 		while (Session.gamming) {
 			int randIndex = RandIndex.unFilled();
 			if (randIndex >= Param.cells) {
@@ -32,7 +33,10 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 			Session.cells[randIndex].setValue(count);
 			publishProgress(0);
 			try {
-				Thread.sleep(Param.cellTime);
+				cellTime = Param.cellTime - count;
+				cellTime = (Param.minCellTime < cellTime) ? cellTime
+						: Param.minCellTime;
+				Thread.sleep(cellTime);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
