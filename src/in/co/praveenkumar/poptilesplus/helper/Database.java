@@ -11,8 +11,8 @@ public class Database {
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
 	private String DEBUG_TAG = "POP_TILE_PLUS_PREFS";
-	
-	public Database(Context context){
+
+	public Database(Context context) {
 		this.appSharedPrefs = context.getSharedPreferences(APP_SHARED_PREFS,
 				Activity.MODE_PRIVATE);
 		this.prefsEditor = appSharedPrefs.edit();
@@ -23,8 +23,8 @@ public class Database {
 	 * 
 	 * @return score
 	 */
-	public int getHighscore() {
-		return appSharedPrefs.getInt("highscore", 0);
+	public int getHighscore(int gameMode) {
+		return appSharedPrefs.getInt("highscore" + gameMode, 0);
 	}
 
 	/**
@@ -32,9 +32,9 @@ public class Database {
 	 * 
 	 * @param score
 	 */
-	public void setHighscore(int score) {
+	public void setHighscore(int score, int gameMode) {
 		Log.d(DEBUG_TAG, "Highscore updated");
-		prefsEditor.putInt("highscore", score);
+		prefsEditor.putInt("highscore" + gameMode, score);
 		prefsEditor.commit();
 	}
 

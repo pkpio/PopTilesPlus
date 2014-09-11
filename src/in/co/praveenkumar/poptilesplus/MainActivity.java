@@ -27,6 +27,8 @@ public class MainActivity extends BaseGameActivity {
 	static TextView highScoreView;
 	static Context context;
 	private GamePlayService playService = new GamePlayService();
+	private AcheivementUnlocker medalUnlocker;
+	private static Database db;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +36,10 @@ public class MainActivity extends BaseGameActivity {
 		setContentView(R.layout.activity_main);
 		init();
 
+		db = new Database(context);
+		medalUnlocker = new AcheivementUnlocker(playService, db);
 		GridView gridView = (GridView) findViewById(R.id.gridView1);
-		gameView = new GameGridAdapter(this, playService);
+		gameView = new GameGridAdapter(this, playService, medalUnlocker);
 		gridView.setAdapter(gameView);
 	}
 
@@ -78,10 +82,9 @@ public class MainActivity extends BaseGameActivity {
 	public static void gameover() {
 		gameoverView.setVisibility(LinearLayout.VISIBLE);
 		finalScoreView.setText(Session.score() + "");
-		Database db = new Database(context);
-		if (db.getHighscore() < Session.score())
-			db.setHighscore(Session.score());
-		highScoreView.setText(db.getHighscore() + "");
+		if (db.getHighscore(Session.gameMode) < Session.score())
+			db.setHighscore(Session.score(), Session.gameMode);
+		highScoreView.setText(db.getHighscore(Session.gameMode) + "");
 	}
 
 	@Override

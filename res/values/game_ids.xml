@@ -2,13 +2,33 @@
 <resources>
 
     <string name="app_id">11216246737</string>
+
+    <!-- Leaderboards -->
     <string name="leaderboard_regular">CggI0a-p5CkQAhAB</string>
     <string name="leaderboard_geek">CggI0a-p5CkQAhAC</string>
     <string name="leaderboard_programmer">CggI0a-p5CkQAhAD</string>
+
+    <!-- Achievements -->
     <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
+    <string name="achievement_college">CggI0a-p5CkQAhAM</string>
+    <string name="achievement_copy_paster">CggI0a-p5CkQAhAR</string>
+    
     <string name="achievement_begginer">CggI0a-p5CkQAhAI</string>
-    <string name="achievement_regular">CggI0a-p5CkQAhAJ</string>
+    <string name="achievement_studious">CggI0a-p5CkQAhAN</string>
+    <string name="achievement_get_it_done">CggI0a-p5CkQAhAS</string>
+    
+    <string name="achievement_quicky">CggI0a-p5CkQAhAJ</string>
+    <string name="achievement_geek">CggI0a-p5CkQAhAO</string>
+    <string name="achievement_coder">CggI0a-p5CkQAhAT</string>
+    
     <string name="achievement_pro">CggI0a-p5CkQAhAK</string>
+    <string name="achievement_nerd">CggI0a-p5CkQAhAP</string>
+    <string name="achievement_pro_coder">CggI0a-p5CkQAhAU</string>
+    
     <string name="achievement_ninja">CggI0a-p5CkQAhAL</string>
+    <string name="achievement_the_nerdy_geek">CggI0a-p5CkQAhAQ</string>
+    <string name="achievement_ninja_programmer">CggI0a-p5CkQAhAV</string>
+    
+    <string name="achievement_linus_torvalds">CggI0a-p5CkQAhAW</string>
 
 </resources>

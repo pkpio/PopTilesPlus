@@ -18,11 +18,14 @@ public class GameGridAdapter extends BaseAdapter {
 	private Context context;
 	private int scoreHeight;
 	private GamePlayService playService;
+	private AcheivementUnlocker medalUnlocker;
 
-	public GameGridAdapter(Context context, GamePlayService playService) {
+	public GameGridAdapter(Context context, GamePlayService playService,
+			AcheivementUnlocker medalUnlocker) {
 		this.context = context;
 		this.playService = playService;
 		this.scoreHeight = dpToPx(30);
+		this.medalUnlocker = medalUnlocker;
 	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
@@ -47,6 +50,7 @@ public class GameGridAdapter extends BaseAdapter {
 					if (Session.score() + 1 == Session.cells[position]
 							.getValue() && Session.gamming) {
 						Session.setScore(Session.score() + 1);
+						medalUnlocker.checkForScoreUnlocks();
 						Session.cells[position].setFilled(false);
 						viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 					} else {
