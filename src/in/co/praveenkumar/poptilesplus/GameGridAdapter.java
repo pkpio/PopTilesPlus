@@ -41,7 +41,7 @@ public class GameGridAdapter extends BaseAdapter {
 			viewHolder.cellValue.setTypeface(Session.font);
 			LayoutParams params = viewHolder.cellValue.getLayoutParams();
 			// I have no idea why 6
-			params.height = (int) (Session.deviceHeight - scoreHeight) / 6;
+			params.height = (int) (Session.deviceHeight - 100) / 5;
 			viewHolder.cellValue.setLayoutParams(params);
 			convertView.setTag(viewHolder);
 			convertView.setOnTouchListener(new OnTouchListener() {

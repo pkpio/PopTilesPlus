@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="button_height">70dp</dimen>
+    <dimen name="score_layout_padding_bottom">164dp</dimen>
+    <dimen name="menu_layout_padding_bottom">90dp</dimen>
+    <dimen name="restart_padding_bottom">20dp</dimen>
+
+</resources>

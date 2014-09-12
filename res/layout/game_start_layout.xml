@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
@@ -11,33 +11,44 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/gamestart_start_text"
         android:textColor="@color/gamestart_poptext"
         android:textSize="40sp" />
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/menu_layout_padding_bottom"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         android:weightSum="1" >
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="0.3"
             android:contentDescription="@string/game_score_title"
             android:onClick="showAchievements"
             android:src="@drawable/icon_achievement" />
 
         <ImageView
+            android:id="@+id/gamestart_mode_button"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="0.3"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="changeGameMode"
+            android:src="@drawable/icon_mode_dec" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="0.3"
             android:contentDescription="@string/game_score_title"
             android:onClick="showLeaderBoards"
             android:src="@drawable/icon_leaderboard" />
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

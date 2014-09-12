@@ -5,15 +5,16 @@ import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,9 +24,11 @@ import com.google.example.games.basegameutils.BaseGameActivity;
 
 public class MainActivity extends BaseGameActivity {
 	GameGridAdapter gameView;
-	static LinearLayout gameoverView;
+	static FrameLayout gameoverView;
 	static TextView finalScoreView;
 	static TextView highScoreView;
+	static ImageView gameoverModeView;
+	static ImageView gamestartModeView;
 	static Context context;
 	private GamePlayService playService = new GamePlayService();
 	private AcheivementUnlocker medalUnlocker;
@@ -50,10 +53,12 @@ public class MainActivity extends BaseGameActivity {
 			cells[i] = new Cell();
 		Session.init(cells, (TextView) findViewById(R.id.score_view));
 
-		gameoverView = (LinearLayout) findViewById(R.id.gameover_layout);
+		gameoverView = (FrameLayout) findViewById(R.id.gameover_layout);
 		finalScoreView = (TextView) findViewById(R.id.final_score_view);
 		highScoreView = (TextView) findViewById(R.id.high_score_view);
-		gameoverView.setVisibility(LinearLayout.GONE);
+		gameoverModeView = (ImageView) findViewById(R.id.gameover_mode_button);
+		gamestartModeView = (ImageView) findViewById(R.id.gamestart_mode_button);
+		gameoverView.setVisibility(FrameLayout.GONE);
 
 		MainActivity.context = this;
 
@@ -82,42 +87,30 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public static void gameover() {
-		gameoverView.setVisibility(LinearLayout.VISIBLE);
+		gameoverView.setVisibility(FrameLayout.VISIBLE);
 		finalScoreView.setText(Session.score() + "");
 		if (db.getHighscore(Session.gameMode) < Session.score())
 			db.setHighscore(Session.score(), Session.gameMode);
 		highScoreView.setText(db.getHighscore(Session.gameMode) + "");
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.layout.menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-
-		switch (item.getItemId()) {
-		case R.id.mode_bin:
-			if (!Session.gamming)
-				Session.gameMode = Session.GAME_MODE_BIN;
-			return true;
-
-		case R.id.mode_dec:
-			if (!Session.gamming)
-				Session.gameMode = Session.GAME_MODE_DEC;
-			return true;
-
-		case R.id.mode_hex:
-			if (!Session.gamming)
-				Session.gameMode = Session.GAME_MODE_HEX;
-			return true;
-
-		default:
-			return super.onOptionsItemSelected(item);
+	public void changeGameMode(View v) {
+		Bitmap icon = null;
+		if (Session.gameMode == Session.GAME_MODE_DEC) {
+			Session.gameMode = Session.GAME_MODE_BIN;
+			icon = BitmapFactory.decodeResource(context.getResources(),
+					R.drawable.icon_mode_bin);
+		} else if (Session.gameMode == Session.GAME_MODE_BIN) {
+			Session.gameMode = Session.GAME_MODE_HEX;
+			icon = BitmapFactory.decodeResource(context.getResources(),
+					R.drawable.icon_mode_hex);
+		} else if (Session.gameMode == Session.GAME_MODE_HEX) {
+			Session.gameMode = Session.GAME_MODE_DEC;
+			icon = BitmapFactory.decodeResource(context.getResources(),
+					R.drawable.icon_mode_dec);
 		}
+		gameoverModeView.setImageBitmap(icon);
+		gamestartModeView.setImageBitmap(icon);
 	}
 
 	@Override
