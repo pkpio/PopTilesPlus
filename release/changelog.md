@@ -1,3 +1,9 @@
+V2.3
+------
+	- Optimized for all screen sizes
+	- Full screen with no title bar
+	- Modes change button
+
 V2.2
 -------
 	- Game speed revised
