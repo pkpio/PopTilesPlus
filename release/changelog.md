@@ -1,3 +1,7 @@
+V2.4
+-----
+	- Added game play count based achievements
+
 V2.3
 ------
 	- Optimized for all screen sizes
