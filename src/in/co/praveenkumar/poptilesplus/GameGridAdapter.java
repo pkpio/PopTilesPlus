@@ -30,10 +30,10 @@ public class GameGridAdapter extends BaseAdapter {
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		final ViewHolder viewHolder;
-		LayoutInflater inflater = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		if (convertView == null) {
+			LayoutInflater inflater = (LayoutInflater) context
+					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.number_layout, null);
 			viewHolder = new ViewHolder();
 			viewHolder.cellValue = (TextView) convertView
@@ -44,26 +44,28 @@ public class GameGridAdapter extends BaseAdapter {
 			params.height = (int) (Session.deviceHeight - 100) / 5;
 			viewHolder.cellValue.setLayoutParams(params);
 			convertView.setTag(viewHolder);
-			convertView.setOnTouchListener(new OnTouchListener() {
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					if (Session.score() + 1 == Session.cells[position]
-							.getValue() && Session.gamming) {
-						Session.setScore(Session.score() + 1);
-						medalUnlocker.checkForScoreUnlocks();
-						Session.cells[position].setFilled(false);
-						viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
-					} else {
-						Session.gamming = false;
-						MainActivity.gameover();
-						playService.submitScore(Session.score());
-					}
-					return false;
-				}
-			});
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+
+		convertView.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (Session.score() + 1 == Session.cells[position].getValue()
+						&& Session.gamming) {
+					Session.setScore(Session.score() + 1);
+					medalUnlocker.checkForScoreUnlocks();
+					Session.cells[position].setFilled(false);
+					viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+				} else {
+					Session.gamming = false;
+					MainActivity.gameover();
+					playService.submitScore(Session.score());
+				}
+				return false;
+			}
+		});
+
 		if (Session.cells[position].isFilled()) {
 			viewHolder.cellValue.setVisibility(TextView.VISIBLE);
 			viewHolder.cellValue.setText(NumberFormat
