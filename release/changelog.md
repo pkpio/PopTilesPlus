@@ -1,3 +1,7 @@
+V2.5
+-----
+	- Added game play streak (in days) based achievements
+
 V2.4
 -----
 	- Added game play count based achievements
