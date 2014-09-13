@@ -8,27 +8,66 @@
     <string name="leaderboard_geek">CggI0a-p5CkQAhAC</string>
     <string name="leaderboard_programmer">CggI0a-p5CkQAhAD</string>
 
-    <!-- Achievements -->
+    <!-- Score Achievements -->
     <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
     <string name="achievement_college">CggI0a-p5CkQAhAM</string>
     <string name="achievement_copy_paster">CggI0a-p5CkQAhAR</string>
-    
     <string name="achievement_begginer">CggI0a-p5CkQAhAI</string>
     <string name="achievement_studious">CggI0a-p5CkQAhAN</string>
     <string name="achievement_get_it_done">CggI0a-p5CkQAhAS</string>
-    
     <string name="achievement_quicky">CggI0a-p5CkQAhAJ</string>
     <string name="achievement_geek">CggI0a-p5CkQAhAO</string>
     <string name="achievement_coder">CggI0a-p5CkQAhAT</string>
-    
     <string name="achievement_pro">CggI0a-p5CkQAhAK</string>
     <string name="achievement_nerd">CggI0a-p5CkQAhAP</string>
     <string name="achievement_pro_coder">CggI0a-p5CkQAhAU</string>
-    
     <string name="achievement_ninja">CggI0a-p5CkQAhAL</string>
     <string name="achievement_the_nerdy_geek">CggI0a-p5CkQAhAQ</string>
     <string name="achievement_ninja_programmer">CggI0a-p5CkQAhAV</string>
-    
     <string name="achievement_linus_torvalds">CggI0a-p5CkQAhAW</string>
+
+    <!-- Game count common Achievements -->
+    <string name="achievement_getting_started__level_1">CggI0a-p5CkQAhAX</string>
+    <string name="achievement_getting_started__level_2">CggI0a-p5CkQAhAY</string>
+    <string name="achievement_getting_started__level_3">CggI0a-p5CkQAhAZ</string>
+    <string name="achievement_getting_addicted__level_1">CggI0a-p5CkQAhAa</string>
+    <string name="achievement_getting_addicted__level_2">CggI0a-p5CkQAhAb</string>
+    <string name="achievement_getting_addicted__level_3">CggI0a-p5CkQAhAc</string>
+    <string name="achievement_addicted__level_1">CggI0a-p5CkQAhAd</string>
+    <string name="achievement_addicted__level_2">CggI0a-p5CkQAhAe</string>
+    <string name="achievement_addicted__level_3">CggI0a-p5CkQAhAf</string>
+    <string name="achievement_livein__level_1">CggI0a-p5CkQAhAg</string>
+    <string name="achievement_livein__level_2">CggI0a-p5CkQAhAh</string>
+    <string name="achievement_livein__level_3">CggI0a-p5CkQAhAi</string>
+    <string name="achievement_no_life__level_1">CggI0a-p5CkQAhAj</string>
+    <string name="achievement_no_life__level_2">CggI0a-p5CkQAhAk</string>
+    <string name="achievement_no_life__level_3">CggI0a-p5CkQAhAl</string>
+
+    <!-- Game count decimal Achievements -->
+    <string name="achievement_layman__level_1">CggI0a-p5CkQAhAm</string>
+    <string name="achievement_layman__level_2">CggI0a-p5CkQAhAn</string>
+    <string name="achievement_layman__level_3">CggI0a-p5CkQAhAo</string>
+    <string name="achievement_layman__level_4">CggI0a-p5CkQAhAp</string>
+    <string name="achievement_layman__level_5">CggI0a-p5CkQAhAq</string>
+    <string name="achievement_layman__level_6">CggI0a-p5CkQAhAr</string>
+    <string name="achievement_feynman">CggI0a-p5CkQAhAs</string>
+
+    <!-- Game count binary Achievements -->
+    <string name="achievement_geek__level_1">CggI0a-p5CkQAhAt</string>
+    <string name="achievement_geek__level_2">CggI0a-p5CkQAhAu</string>
+    <string name="achievement_geek__level_3">CggI0a-p5CkQAhAv</string>
+    <string name="achievement_geek__level_4">CggI0a-p5CkQAhAw</string>
+    <string name="achievement_geek__level_5">CggI0a-p5CkQAhAx</string>
+    <string name="achievement_geek__level_6">CggI0a-p5CkQAhAy</string>
+    <string name="achievement_bill">CggI0a-p5CkQAhAz</string>
+
+    <!-- Game count Hexadecimal Achievements -->
+    <string name="achievement_coder__level_1">CggI0a-p5CkQAhA0</string>
+    <string name="achievement_coder__level_2">CggI0a-p5CkQAhA1</string>
+    <string name="achievement_coder__level_3">CggI0a-p5CkQAhA2</string>
+    <string name="achievement_coder__level_4">CggI0a-p5CkQAhA3</string>
+    <string name="achievement_coder__level_5">CggI0a-p5CkQAhA4</string>
+    <string name="achievement_coder__level_6">CggI0a-p5CkQAhA5</string>
+    <string name="achievement_zuck">CggI0a-p5CkQAhA6</string>
 
 </resources>

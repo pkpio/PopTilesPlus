@@ -78,7 +78,7 @@ public class MainActivity extends BaseGameActivity {
 			v.setVisibility(LinearLayout.GONE);
 		init();
 		Session.gamming = true;
-		GameRunner game = new GameRunner(gameView, playService);
+		GameRunner game = new GameRunner(gameView, playService, medalUnlocker);
 		game.execute("");
 	}
 
@@ -197,6 +197,11 @@ public class MainActivity extends BaseGameActivity {
 		public void unLockAchievement(int id) {
 			if (isSignedIn())
 				Games.Achievements.unlock(getApiClient(), getString(id));
+		}
+
+		public void incrementAchievement(int id) {
+			if (isSignedIn())
+				Games.Achievements.increment(getApiClient(), getString(id), 1);
 		}
 	}
 }

@@ -37,6 +37,9 @@ public class AcheivementUnlocker {
 		this.db = db;
 	}
 
+	/**
+	 * Checks and unlocks any score based achievements
+	 */
 	public void checkForScoreUnlocks() {
 		int highscore = db.getHighscore(Session.gameMode);
 
@@ -53,6 +56,90 @@ public class AcheivementUnlocker {
 			break;
 		case Session.GAME_MODE_HEX:
 			checkHexModeUnlocks();
+			break;
+		}
+	}
+
+	/**
+	 * Checks and unlocks any game play counts based achievements
+	 */
+	public void checkForGameCountUnlocks() {
+		playService
+				.incrementAchievement(R.string.achievement_getting_started__level_1);
+		playService
+				.incrementAchievement(R.string.achievement_getting_started__level_2);
+		playService
+				.incrementAchievement(R.string.achievement_getting_started__level_3);
+
+		playService
+				.incrementAchievement(R.string.achievement_getting_addicted__level_1);
+		playService
+				.incrementAchievement(R.string.achievement_getting_addicted__level_2);
+		playService
+				.incrementAchievement(R.string.achievement_getting_addicted__level_3);
+
+		playService
+				.incrementAchievement(R.string.achievement_addicted__level_1);
+		playService
+				.incrementAchievement(R.string.achievement_addicted__level_2);
+		playService
+				.incrementAchievement(R.string.achievement_addicted__level_3);
+
+		playService.incrementAchievement(R.string.achievement_livein__level_1);
+		playService.incrementAchievement(R.string.achievement_livein__level_2);
+		playService.incrementAchievement(R.string.achievement_livein__level_3);
+
+		playService.incrementAchievement(R.string.achievement_no_life__level_1);
+		playService.incrementAchievement(R.string.achievement_no_life__level_2);
+		playService.incrementAchievement(R.string.achievement_no_life__level_3);
+
+		switch (Session.gameMode) {
+		case Session.GAME_MODE_DEC:
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_1);
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_2);
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_3);
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_4);
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_5);
+			playService
+					.incrementAchievement(R.string.achievement_layman__level_6);
+			playService.incrementAchievement(R.string.achievement_feynman);
+
+			break;
+		case Session.GAME_MODE_BIN:
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_1);
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_2);
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_3);
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_4);
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_5);
+			playService
+					.incrementAchievement(R.string.achievement_geek__level_6);
+			playService.incrementAchievement(R.string.achievement_bill);
+			break;
+		case Session.GAME_MODE_HEX:
+
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_1);
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_2);
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_3);
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_4);
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_5);
+			playService
+					.incrementAchievement(R.string.achievement_coder__level_6);
+			playService.incrementAchievement(R.string.achievement_zuck);
 			break;
 		}
 	}

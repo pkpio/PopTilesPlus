@@ -9,10 +9,13 @@ import android.os.AsyncTask;
 public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	private GameGridAdapter gameView;
 	private GamePlayService playService;
+	private AcheivementUnlocker medalUnlocker;
 
-	public GameRunner(GameGridAdapter gameView, GamePlayService playService) {
+	public GameRunner(GameGridAdapter gameView, GamePlayService playService,
+			AcheivementUnlocker medalUnlocker) {
 		this.gameView = gameView;
 		this.playService = playService;
+		this.medalUnlocker = medalUnlocker;
 	}
 
 	@Override
@@ -58,6 +61,7 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 	protected void onPostExecute(Boolean result) {
 		MainActivity.gameover();
 		playService.submitScore(Session.score());
+		medalUnlocker.checkForGameCountUnlocks();
 	}
 
 }
