@@ -33,8 +33,27 @@ public class Database {
 	 * @param score
 	 */
 	public void setHighscore(int score, int gameMode) {
-		Log.d(DEBUG_TAG, "Highscore updated");
 		prefsEditor.putInt("highscore" + gameMode, score);
+		prefsEditor.commit();
+	}
+
+	/**
+	 * Get number of times the game has been played in a mode
+	 * 
+	 * @param gameMode
+	 * @return count
+	 */
+	public int getPlaycount(int gameMode) {
+		return appSharedPrefs.getInt("playcount" + gameMode, 0);
+	}
+
+	/**
+	 * Increase the number of times the game has been played in a mode
+	 * 
+	 * @param gameMode
+	 */
+	public void increasePlaycount(int gameMode) {
+		prefsEditor.putInt("highscore" + gameMode, getPlaycount(gameMode) + 1);
 		prefsEditor.commit();
 	}
 
