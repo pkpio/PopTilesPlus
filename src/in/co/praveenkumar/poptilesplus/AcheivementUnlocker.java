@@ -1,5 +1,9 @@
 package in.co.praveenkumar.poptilesplus;
 
+import java.util.Calendar;
+
+import android.util.Log;
+
 import in.co.praveenkumar.poptilesplus.MainActivity.GamePlayService;
 import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Session;
@@ -141,6 +145,44 @@ public class AcheivementUnlocker {
 					.incrementAchievement(R.string.achievement_coder__level_6);
 			playService.incrementAchievement(R.string.achievement_zuck);
 			break;
+		}
+
+		/**
+		 * Game streak unlocks
+		 */
+		Calendar c = Calendar.getInstance();
+		int nowDay = c.get(Calendar.DATE);
+		int nowMonth = c.get(Calendar.MONTH);
+		int nowYear = c.get(Calendar.YEAR);
+
+		c.setTimeInMillis(db.getLastPlayedTime());
+		int lastDay = c.get(Calendar.DATE);
+		int lastMonth = c.get(Calendar.MONTH);
+		int lastYear = c.get(Calendar.YEAR);
+
+		// Last played is today? Do nothing
+		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
+			Log.d("Streaker", "same day");
+			return;
+		}
+
+		/**
+		 * We need to check if last played is yesterday or some other day. Add
+		 * 24 hours to last played. If the dates match - yesterday.
+		 */
+		c.setTimeInMillis(db.getLastPlayedTime() + 24 * 60 * 60 * 1000);
+		lastDay = c.get(Calendar.DATE);
+		lastMonth = c.get(Calendar.MONTH);
+		lastYear = c.get(Calendar.YEAR);
+		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
+			db.incrementCurrentStreak();
+			Log.d("Steaker", "Streak incremented");
+			// -TODO- Increment and check streak unlocks here
+			return;
+		} else {
+			Log.d("Streaker", "someother day");
+			db.setLastPlayedTime();
+			db.resetCurrentStreak();
 		}
 	}
 

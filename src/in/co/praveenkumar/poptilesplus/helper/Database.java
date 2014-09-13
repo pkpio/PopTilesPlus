@@ -10,6 +10,7 @@ public class Database {
 	private final String APP_SHARED_PREFS = "POP_TILE_PLUS_PREFERENCES";
 	private SharedPreferences appSharedPrefs;
 	private Editor prefsEditor;
+
 	private String DEBUG_TAG = "POP_TILE_PLUS_PREFS";
 
 	public Database(Context context) {
@@ -54,6 +55,46 @@ public class Database {
 	 */
 	public void increasePlaycount(int gameMode) {
 		prefsEditor.putInt("highscore" + gameMode, getPlaycount(gameMode) + 1);
+		prefsEditor.commit();
+	}
+
+	/**
+	 * Returns the number of days in the current game streak
+	 */
+	public int getCurrentStreak() {
+		return appSharedPrefs.getInt("currentstreak", 1);
+	}
+
+	/**
+	 * Increment the number of days in the current game streak
+	 */
+	public void incrementCurrentStreak() {
+		Log.d(DEBUG_TAG, "Streak incremented");
+		prefsEditor.putInt("currentstreak", getCurrentStreak() + 1);
+		prefsEditor.commit();
+	}
+
+	/**
+	 * Reset the number of days in the current game streak
+	 */
+	public void resetCurrentStreak() {
+		prefsEditor.putInt("currentstreak", 1);
+		prefsEditor.commit();
+	}
+
+	/**
+	 * Get the last played time stamp
+	 */
+	public long getLastPlayedTime() {
+		return appSharedPrefs.getLong("lastplayedtime",
+				System.currentTimeMillis());
+	}
+
+	/**
+	 * Set the last played time stamp to now
+	 */
+	public void setLastPlayedTime() {
+		prefsEditor.putLong("lastplayedtime", System.currentTimeMillis());
 		prefsEditor.commit();
 	}
 
