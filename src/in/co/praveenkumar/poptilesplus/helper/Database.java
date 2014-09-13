@@ -86,8 +86,10 @@ public class Database {
 	 * Get the last played time stamp
 	 */
 	public long getLastPlayedTime() {
-		return appSharedPrefs.getLong("lastplayedtime",
+		long test = appSharedPrefs.getLong("lastplayedtime",
 				System.currentTimeMillis());
+		Log.d(DEBUG_TAG, "Last played " + test);
+		return test;
 	}
 
 	/**

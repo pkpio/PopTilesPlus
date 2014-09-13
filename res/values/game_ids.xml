@@ -70,4 +70,14 @@
     <string name="achievement_coder__level_6">CggI0a-p5CkQAhA5</string>
     <string name="achievement_zuck">CggI0a-p5CkQAhA6</string>
 
+    <!-- Streak based Achievements -->
+    <string name="achievement_visitor">CggI0a-p5CkQAhA7</string>
+    <string name="achievement_regular">CggI0a-p5CkQAhA8</string>
+    <string name="achievement_frequent_flyer">CggI0a-p5CkQAhA9</string>
+    <string name="achievement_bronze_card_holder">CggI0a-p5CkQAhA-</string>
+    <string name="achievement_silver_card_holder">CggI0a-p5CkQAhA_</string>
+    <string name="achievement_gold_card_holder">CggI0a-p5CkQAhBA</string>
+    <string name="achievement_platinum_card_holder">CggI0a-p5CkQAhBB</string>
+    <string name="achievement_super_user">CggI0a-p5CkQAhBC</string>
+
 </resources>

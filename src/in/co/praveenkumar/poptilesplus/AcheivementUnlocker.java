@@ -1,14 +1,15 @@
 package in.co.praveenkumar.poptilesplus;
 
-import java.util.Calendar;
-
-import android.util.Log;
-
 import in.co.praveenkumar.poptilesplus.MainActivity.GamePlayService;
 import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 
+import java.util.Calendar;
+
+import android.util.Log;
+
 public class AcheivementUnlocker {
+	private final String DEBUG_TAG = "AcheivementUnlocker";
 	// Achievement unlocking score marks;
 
 	// Hexadecimal mode marks
@@ -150,40 +151,7 @@ public class AcheivementUnlocker {
 		/**
 		 * Game streak unlocks
 		 */
-		Calendar c = Calendar.getInstance();
-		int nowDay = c.get(Calendar.DATE);
-		int nowMonth = c.get(Calendar.MONTH);
-		int nowYear = c.get(Calendar.YEAR);
-
-		c.setTimeInMillis(db.getLastPlayedTime());
-		int lastDay = c.get(Calendar.DATE);
-		int lastMonth = c.get(Calendar.MONTH);
-		int lastYear = c.get(Calendar.YEAR);
-
-		// Last played is today? Do nothing
-		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
-			Log.d("Streaker", "same day");
-			return;
-		}
-
-		/**
-		 * We need to check if last played is yesterday or some other day. Add
-		 * 24 hours to last played. If the dates match - yesterday.
-		 */
-		c.setTimeInMillis(db.getLastPlayedTime() + 24 * 60 * 60 * 1000);
-		lastDay = c.get(Calendar.DATE);
-		lastMonth = c.get(Calendar.MONTH);
-		lastYear = c.get(Calendar.YEAR);
-		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
-			db.incrementCurrentStreak();
-			Log.d("Steaker", "Streak incremented");
-			// -TODO- Increment and check streak unlocks here
-			return;
-		} else {
-			Log.d("Streaker", "someother day");
-			db.setLastPlayedTime();
-			db.resetCurrentStreak();
-		}
+		checkStreakUnlocks();
 	}
 
 	private void checkBinModeUnlocks() {
@@ -247,6 +215,76 @@ public class AcheivementUnlocker {
 		case HEX_LINUS:
 			playService.unLockAchievement(R.string.achievement_linus_torvalds);
 			break;
+		}
+	}
+
+	private void checkStreakUnlocks() {
+		Calendar c = Calendar.getInstance();
+		int nowDay = c.get(Calendar.DATE);
+		int nowMonth = c.get(Calendar.MONTH);
+		int nowYear = c.get(Calendar.YEAR);
+		Log.d("Debug", "Now is : " + c.getTimeInMillis());
+
+		c.setTimeInMillis(db.getLastPlayedTime());
+		int lastDay = c.get(Calendar.DATE);
+		int lastMonth = c.get(Calendar.MONTH);
+		int lastYear = c.get(Calendar.YEAR);
+
+		// Last played is today? Do nothing
+		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
+			Log.d(DEBUG_TAG, "Streak unchanged");
+			db.setLastPlayedTime(); // This is to initialize last played
+			return;
+		}
+
+		/**
+		 * We need to check if last played is yesterday or some other day. Add
+		 * 24 hours to last played. If the dates match - yesterday.
+		 */
+		c.setTimeInMillis(db.getLastPlayedTime() + 24 * 60 * 60 * 1000);
+		lastDay = c.get(Calendar.DATE);
+		lastMonth = c.get(Calendar.MONTH);
+		lastYear = c.get(Calendar.YEAR);
+		if (nowDay == lastDay && nowMonth == lastMonth && nowYear == lastYear) {
+			Log.d(DEBUG_TAG, "Streak incremented " + db.getCurrentStreak());
+			db.incrementCurrentStreak();
+			db.setLastPlayedTime();
+			switch (db.getCurrentStreak()) {
+			case 3:
+				playService.unLockAchievement(R.string.achievement_visitor);
+				break;
+			case 5:
+				playService.unLockAchievement(R.string.achievement_regular);
+				break;
+			case 7:
+				playService
+						.unLockAchievement(R.string.achievement_frequent_flyer);
+				break;
+			case 10:
+				playService
+						.unLockAchievement(R.string.achievement_bronze_card_holder);
+				break;
+			case 15:
+				playService
+						.unLockAchievement(R.string.achievement_silver_card_holder);
+				break;
+			case 20:
+				playService
+						.unLockAchievement(R.string.achievement_gold_card_holder);
+				break;
+			case 25:
+				playService
+						.unLockAchievement(R.string.achievement_platinum_card_holder);
+				break;
+			case 30:
+				playService.unLockAchievement(R.string.achievement_super_user);
+				break;
+			}
+			return;
+		} else {
+			Log.d(DEBUG_TAG, "Streak reset");
+			db.setLastPlayedTime();
+			db.resetCurrentStreak();
 		}
 	}
 
