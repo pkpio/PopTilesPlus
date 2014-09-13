@@ -1,3 +1,7 @@
+V2.6
+-----
+	- Critical bug fix for Gingerbread devices (related to gridview recycling)
+
 V2.5
 -----
 	- Added game play streak (in days) based achievements
