@@ -130,14 +130,12 @@ public class MainActivity extends BaseGameActivity {
 			startActivityForResult(
 					Games.Achievements.getAchievementsIntent(getApiClient()), 1);
 		else
-			Toast.makeText(this, "Connect to Playservices first",
-					Toast.LENGTH_LONG).show();
+			beginUserInitiatedSignIn();
 	}
 
 	public void showLeaderBoards(View v) {
 		if (!getApiClient().isConnected()) {
-			Toast.makeText(this, "Connect to Playservices first",
-					Toast.LENGTH_LONG).show();
+			beginUserInitiatedSignIn();
 			return;
 		}
 
