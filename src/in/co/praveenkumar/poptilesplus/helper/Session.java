@@ -8,6 +8,7 @@ public class Session {
 	public static final int GAME_MODE_DEC = 0;
 	public static final int GAME_MODE_HEX = 1;
 	public static final int GAME_MODE_BIN = 2;
+	public static final int GAME_MODE_FIB = 3;
 	public static final int GAME_MODE_DEFAULT = GAME_MODE_DEC;
 
 	private static int score = 0;
