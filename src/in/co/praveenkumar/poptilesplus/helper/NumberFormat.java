@@ -1,5 +1,7 @@
 package in.co.praveenkumar.poptilesplus.helper;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 public class NumberFormat {
@@ -13,7 +15,7 @@ public class NumberFormat {
 		case Session.GAME_MODE_HEX:
 			return Integer.toHexString(num);
 		case Session.GAME_MODE_FIB:
-			return fibonacci(num) + "";
+			return finalAdjustedDouble(fibonacci(num));
 		default:
 			return num + "";
 		}
@@ -44,5 +46,18 @@ public class NumberFormat {
 					+ fibonacciSeries.get(n - 2));
 			return fibonacciSeries.get(n);
 		}
+	}
+
+	public static String finalAdjustedDouble(double value) {
+		String adjust = value + "";
+		if (adjust.contains("E")) {
+			int ePos = adjust.indexOf("E");
+			adjust = adjust.substring(0, 4) + " "
+					+ adjust.substring(ePos, adjust.length());
+		} else {
+			int dPos = adjust.indexOf(".");
+			adjust = adjust.substring(0, dPos);
+		}
+		return adjust;
 	}
 }
