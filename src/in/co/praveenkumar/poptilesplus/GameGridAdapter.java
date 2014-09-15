@@ -5,6 +5,7 @@ import in.co.praveenkumar.poptilesplus.helper.NumberFormat;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import android.content.Context;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -67,8 +68,12 @@ public class GameGridAdapter extends BaseAdapter {
 
 		if (Session.cells[position].isFilled()) {
 			viewHolder.cellValue.setVisibility(TextView.VISIBLE);
-			viewHolder.cellValue.setText(NumberFormat
-					.out(Session.cells[position].getValue()));
+			String cellVal = NumberFormat.out(Session.cells[position]
+					.getValue());
+			// Adjust font size based on length of string
+			viewHolder.cellValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+					getTextSize(cellVal.length()));
+			viewHolder.cellValue.setText(cellVal);
 		} else
 			viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 
@@ -96,6 +101,15 @@ public class GameGridAdapter extends BaseAdapter {
 		int px = Math.round(dp
 				* (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
 		return px;
+	}
+
+	private int getTextSize(int length) {
+		if (length < 4)
+			return 30;
+		else if (length <= 5)
+			return 28;
+		else
+			return 26;
 	}
 
 	static class ViewHolder {
