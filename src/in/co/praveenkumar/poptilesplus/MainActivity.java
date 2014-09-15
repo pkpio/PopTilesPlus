@@ -105,6 +105,10 @@ public class MainActivity extends BaseGameActivity {
 			icon = BitmapFactory.decodeResource(context.getResources(),
 					R.drawable.icon_mode_hex);
 		} else if (Session.gameMode == Session.GAME_MODE_HEX) {
+			Session.gameMode = Session.GAME_MODE_FIB;
+			icon = BitmapFactory.decodeResource(context.getResources(),
+					R.drawable.icon_mode_fib);
+		} else if (Session.gameMode == Session.GAME_MODE_FIB) {
 			Session.gameMode = Session.GAME_MODE_DEC;
 			icon = BitmapFactory.decodeResource(context.getResources(),
 					R.drawable.icon_mode_dec);
@@ -152,6 +156,10 @@ public class MainActivity extends BaseGameActivity {
 			startActivityForResult(
 					Games.Leaderboards.getLeaderboardIntent(getApiClient(),
 							getString(R.string.leaderboard_programmer)), 4);
+		case Session.GAME_MODE_FIB:
+			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+					getApiClient(), getString(R.string.leaderboard_fibonnaci)),
+					5);
 			break;
 
 		default:
@@ -172,19 +180,19 @@ public class MainActivity extends BaseGameActivity {
 
 			switch (Session.gameMode) {
 			case Session.GAME_MODE_BIN:
-				Log.d("Scores submit", "Submit requested!");
 				Games.Leaderboards.submitScore(getApiClient(),
 						getString(R.string.leaderboard_geek), score);
 				break;
 			case Session.GAME_MODE_DEC:
-				Log.d("Scores submit", "Submit requested!");
 				Games.Leaderboards.submitScore(getApiClient(),
 						getString(R.string.leaderboard_regular), score);
 				break;
 			case Session.GAME_MODE_HEX:
-				Log.d("Scores submit", "Submit requested!");
 				Games.Leaderboards.submitScore(getApiClient(),
 						getString(R.string.leaderboard_programmer), score);
+			case Session.GAME_MODE_FIB:
+				Games.Leaderboards.submitScore(getApiClient(),
+						getString(R.string.leaderboard_fibonnaci), score);
 				break;
 
 			default:

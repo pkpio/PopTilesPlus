@@ -23,16 +23,16 @@ public class NumberFormat {
 	 * We shall be adding all the fibonacci numbers we found so far to this list
 	 * so that we can use later without having to recompute.
 	 */
-	static ArrayList<Long> fibonacciSeries = new ArrayList<Long>();
+	static ArrayList<Double> fibonacciSeries = new ArrayList<Double>();
 
-	private static long fibonacci(int n) {
+	private static double fibonacci(int n) {
 		// Because index in list starts from 0
 		n = n - 1;
 
 		// If not initialized. Do it with just 2 values.
 		if (fibonacciSeries.size() == 0) {
-			fibonacciSeries.add(Long.valueOf(0));
-			fibonacciSeries.add(Long.valueOf(1));
+			fibonacciSeries.add(Double.valueOf(0));
+			fibonacciSeries.add(Double.valueOf(1));
 		}
 
 		if (fibonacciSeries.size() > n)

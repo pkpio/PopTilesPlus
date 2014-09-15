@@ -7,6 +7,7 @@
     <string name="leaderboard_regular">CggI0a-p5CkQAhAB</string>
     <string name="leaderboard_geek">CggI0a-p5CkQAhAC</string>
     <string name="leaderboard_programmer">CggI0a-p5CkQAhAD</string>
+    <string name="leaderboard_fibonnaci">CggI0a-p5CkQAhBD</string>
 
     <!-- Score Achievements -->
     <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
@@ -25,6 +26,12 @@
     <string name="achievement_the_nerdy_geek">CggI0a-p5CkQAhAQ</string>
     <string name="achievement_ninja_programmer">CggI0a-p5CkQAhAV</string>
     <string name="achievement_linus_torvalds">CggI0a-p5CkQAhAW</string>
+    <string name="achievement_oh_fibonnaci">CggI0a-p5CkQAhBE</string>
+    <string name="achievement_fibonacci_50">CggI0a-p5CkQAhBF</string>
+    <string name="achievement_fibonacci_75">CggI0a-p5CkQAhBG</string>
+    <string name="achievement_fibonacci_century">CggI0a-p5CkQAhBH</string>
+    <string name="achievement_fibonacci_150">CggI0a-p5CkQAhBI</string>
+    <string name="achievement_leonardo_fibonacci">CggI0a-p5CkQAhBJ</string>
 
     <!-- Game count common Achievements -->
     <string name="achievement_getting_started__level_1">CggI0a-p5CkQAhAX</string>
@@ -69,6 +76,14 @@
     <string name="achievement_coder__level_5">CggI0a-p5CkQAhA4</string>
     <string name="achievement_coder__level_6">CggI0a-p5CkQAhA5</string>
     <string name="achievement_zuck">CggI0a-p5CkQAhA6</string>
+
+    <!-- Game count Fibonacci Achievements -->
+    <string name="achievement_fibonacci__level_1">CggI0a-p5CkQAhBK</string>
+    <string name="achievement_fibonacci__level_2">CggI0a-p5CkQAhBL</string>
+    <string name="achievement_fibonacci__level_3">CggI0a-p5CkQAhBM</string>
+    <string name="achievement_fibonacci__level_4">CggI0a-p5CkQAhBN</string>
+    <string name="achievement_fibonacci__level_5">CggI0a-p5CkQAhBO</string>
+    <string name="achievement_you_can_be_fibonacci">CggI0a-p5CkQAhBP</string>
 
     <!-- Streak based Achievements -->
     <string name="achievement_visitor">CggI0a-p5CkQAhA7</string>

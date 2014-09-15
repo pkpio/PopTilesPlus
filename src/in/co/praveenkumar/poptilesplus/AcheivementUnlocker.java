@@ -34,6 +34,14 @@ public class AcheivementUnlocker {
 	private final int BIN_NERD = 200;
 	private final int BIN_NERDY_GEEK = 500;
 
+	// Fibonnaci mode marks
+	private final int FIB_OH_FIBONNACI = 20;
+	private final int FIB_FIBONNACI_50 = 50;
+	private final int FIB_FIBONNACI_75 = 75;
+	private final int FIB_FIBONNACI_CENTURY = 100;
+	private final int FIB_FIBONNACI_150 = 200;
+	private final int FIB_LENARDO_FIBONNACI = 500;
+
 	GamePlayService playService;
 	Database db;
 
@@ -61,6 +69,9 @@ public class AcheivementUnlocker {
 			break;
 		case Session.GAME_MODE_HEX:
 			checkHexModeUnlocks();
+			break;
+		case Session.GAME_MODE_FIB:
+			checkFibModeUnlocks();
 			break;
 		}
 	}
@@ -131,7 +142,6 @@ public class AcheivementUnlocker {
 			playService.incrementAchievement(R.string.achievement_bill);
 			break;
 		case Session.GAME_MODE_HEX:
-
 			playService
 					.incrementAchievement(R.string.achievement_coder__level_1);
 			playService
@@ -145,6 +155,20 @@ public class AcheivementUnlocker {
 			playService
 					.incrementAchievement(R.string.achievement_coder__level_6);
 			playService.incrementAchievement(R.string.achievement_zuck);
+			break;
+		case Session.GAME_MODE_FIB:
+			playService
+					.incrementAchievement(R.string.achievement_fibonacci__level_1);
+			playService
+					.incrementAchievement(R.string.achievement_fibonacci__level_2);
+			playService
+					.incrementAchievement(R.string.achievement_fibonacci__level_3);
+			playService
+					.incrementAchievement(R.string.achievement_fibonacci__level_4);
+			playService
+					.incrementAchievement(R.string.achievement_fibonacci__level_5);
+			playService
+					.incrementAchievement(R.string.achievement_you_can_be_fibonacci);
 			break;
 		}
 
@@ -214,6 +238,31 @@ public class AcheivementUnlocker {
 			break;
 		case HEX_LINUS:
 			playService.unLockAchievement(R.string.achievement_linus_torvalds);
+			break;
+		}
+	}
+
+	private void checkFibModeUnlocks() {
+		switch (Session.score()) {
+		case FIB_OH_FIBONNACI:
+			playService.unLockAchievement(R.string.achievement_oh_fibonnaci);
+			break;
+		case FIB_FIBONNACI_50:
+			playService.unLockAchievement(R.string.achievement_fibonacci_50);
+			break;
+		case FIB_FIBONNACI_75:
+			playService.unLockAchievement(R.string.achievement_fibonacci_75);
+			break;
+		case FIB_FIBONNACI_CENTURY:
+			playService
+					.unLockAchievement(R.string.achievement_fibonacci_century);
+			break;
+		case FIB_FIBONNACI_150:
+			playService.unLockAchievement(R.string.achievement_fibonacci_150);
+			break;
+		case FIB_LENARDO_FIBONNACI:
+			playService
+					.unLockAchievement(R.string.achievement_leonardo_fibonacci);
 			break;
 		}
 	}
