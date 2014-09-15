@@ -1,3 +1,9 @@
+V2.7
+----
+	- Fibonacci mode added
+	- New set of achievements to unlock!
+	- Minor on the fly font size adjusts
+
 V2.6
 -----
 	- Critical bug fix for Gingerbread devices (related to gridview recycling)
