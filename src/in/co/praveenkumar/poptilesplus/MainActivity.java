@@ -10,14 +10,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
@@ -156,6 +154,7 @@ public class MainActivity extends BaseGameActivity {
 			startActivityForResult(
 					Games.Leaderboards.getLeaderboardIntent(getApiClient(),
 							getString(R.string.leaderboard_programmer)), 4);
+			break;
 		case Session.GAME_MODE_FIB:
 			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
 					getApiClient(), getString(R.string.leaderboard_fibonnaci)),
