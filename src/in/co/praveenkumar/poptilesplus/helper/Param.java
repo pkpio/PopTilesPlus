@@ -16,5 +16,5 @@ public class Param {
 	/**
 	 * Min cell time (in milliseconds) after which speed won't change
 	 */
-	public static final int minCellTime = 50;
+	public static final int minCellTime = 250;
 }

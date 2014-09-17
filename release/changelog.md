@@ -1,3 +1,8 @@
+V2.8
+----
+	- Fixed hexmode leaderboards not showing up
+	- Updated Game speed for higher levels (score > 110)
+
 V2.7
 ----
 	- Fibonacci mode added
