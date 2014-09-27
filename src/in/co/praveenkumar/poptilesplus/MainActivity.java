@@ -7,6 +7,7 @@ import in.co.praveenkumar.poptilesplus.model.Cell;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -53,7 +54,7 @@ public class MainActivity extends BaseGameActivity {
 					@Override
 					public void onProductPurchased(String productId,
 							TransactionDetails details) {
-						Toast.makeText(context, "Thank you :)",
+						Toast.makeText(context, "You donated already. Thank you :)",
 								Toast.LENGTH_LONG).show();
 					}
 
@@ -273,7 +274,22 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public void donate(View v) {
+		donate.consumePurchase(PRODUCT_ID);
 		donate.purchase(PRODUCT_ID);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (!donate.handleActivityResult(requestCode, resultCode, data))
+			super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onDestroy() {
+		if (donate != null)
+			donate.release();
+
+		super.onDestroy();
 	}
 
 	/**

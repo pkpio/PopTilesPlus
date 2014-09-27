@@ -1,5 +1,11 @@
+V3.0
+----
+	- Public release
+	- Min API Level set to 14
+
 V2.9
 ----
+	- Released as a Beta
 	- Chaos mode in each game mode
 	- Seperate leaderboards for chaos mode
 	- Donate option as an in-app purchase
