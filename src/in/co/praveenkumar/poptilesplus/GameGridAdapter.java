@@ -1,5 +1,6 @@
 package in.co.praveenkumar.poptilesplus;
 
+import static com.nineoldandroids.view.ViewPropertyAnimator.animate;
 import in.co.praveenkumar.poptilesplus.MainActivity.GamePlayService;
 import in.co.praveenkumar.poptilesplus.helper.NumberFormat;
 import in.co.praveenkumar.poptilesplus.helper.Session;
@@ -56,7 +57,9 @@ public class GameGridAdapter extends BaseAdapter {
 					Session.setScore(Session.score() + 1);
 					medalUnlocker.checkForScoreUnlocks();
 					Session.cells[position].setFilled(false);
-					viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+					animate(viewHolder.cellValue).setDuration(
+							Session.alphaDuration());
+					animate(viewHolder.cellValue).alpha(0);
 				} else {
 					Session.gamming = false;
 					MainActivity.gameover();
@@ -67,15 +70,17 @@ public class GameGridAdapter extends BaseAdapter {
 		});
 
 		if (Session.cells[position].isFilled()) {
-			viewHolder.cellValue.setVisibility(TextView.VISIBLE);
-			String cellVal = NumberFormat.out(Session.cells[position]
-					.getValue());
-			// Adjust font size based on length of string
-			viewHolder.cellValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-					getTextSize(cellVal.length()));
-			viewHolder.cellValue.setText(cellVal);
-		} else
-			viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+			animate(viewHolder.cellValue).setDuration(0);
+			animate(viewHolder.cellValue).alpha(1);
+		} else {
+			animate(viewHolder.cellValue).setDuration(Session.alphaDuration());
+			animate(viewHolder.cellValue).alpha(0);
+		}
+		String cellVal = NumberFormat.out(Session.cells[position].getValue());
+		// Adjust font size based on length of string
+		viewHolder.cellValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,
+				getTextSize(cellVal.length()));
+		viewHolder.cellValue.setText(cellVal);
 
 		return convertView;
 	}
