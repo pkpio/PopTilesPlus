@@ -23,6 +23,14 @@ public class Cell {
 	}
 
 	/**
+	 * Get the value of the cell. This will NOT change the state
+	 * 
+	 */
+	public void setValueWithoutStateChange(int value) {
+		this.value = value;
+	}
+
+	/**
 	 * Check if this cell is filled
 	 * 
 	 * @return filledState
