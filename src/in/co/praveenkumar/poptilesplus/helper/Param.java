@@ -1,8 +1,17 @@
 package in.co.praveenkumar.poptilesplus.helper;
 
 public class Param {
+	/**
+	 * Total number of columns in the game
+	 */
 	public static final int colums = 4;
+	/**
+	 * Total number of rows in the game
+	 */
 	public static final int rows = 5;
+	/**
+	 * Total number of cells in the game
+	 */
 	public static final int cells = colums * rows;
 	/**
 	 * Time (in milliseconds) after which screen will be filled with tiles if
