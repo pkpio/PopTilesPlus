@@ -53,7 +53,8 @@ public class GameGridAdapter extends BaseAdapter {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				if (Session.score() + 1 == Session.cells[position].getValue()
-						&& Session.gamming) {
+						&& Session.gamming
+						&& Session.cells[position].isFilled()) {
 					Session.setScore(Session.score() + 1);
 					medalUnlocker.checkForScoreUnlocks();
 					Session.cells[position].setFilled(false);
