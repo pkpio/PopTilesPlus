@@ -1,3 +1,9 @@
+V2.9
+----
+	- Chaos mode in each game mode
+	- Seperate leaderboards for chaos mode
+	- Donate option as an in-app purchase
+
 V2.8
 ----
 	- Fixed hexmode leaderboards not showing up
