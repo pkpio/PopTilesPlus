@@ -28,6 +28,13 @@ public class GameRunner extends AsyncTask<String, Integer, Boolean> {
 		int count = 1;
 		long cellTime = 0;
 		while (Session.gamming) {
+
+			// Fill current value in all unfilled cells. To add more confusion
+			for (int i = 0; i < Param.cells; i++)
+				if (!Session.cells[i].isFilled())
+					Session.cells[i]
+							.setValueWithoutStateChange(Session.score() + 1);
+
 			int randIndex = RandIndex.unFilled();
 			if (randIndex >= Param.cells) {
 				Session.gamming = false;

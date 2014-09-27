@@ -21,10 +21,16 @@ public class Session {
 	public static Boolean gamming = false;
 	public static int deviceWidth;
 	public static int deviceHeight;
+
 	/**
 	 * Takes one of the 3 supported modes indicated by GameMode_
 	 */
-	public static int gameMode;
+	public static int gameMode = GAME_MODE_DEC;
+
+	/**
+	 * Game chaos enabled status
+	 */
+	public static Boolean chaos = false;
 
 	/**
 	 * Initialize a game session.
@@ -58,6 +64,15 @@ public class Session {
 	 */
 	public static int score() {
 		return Session.score;
+	}
+
+	/**
+	 * Get the alpha duration
+	 * 
+	 * @return
+	 */
+	public static int alphaDuration() {
+		return chaos ? 500 : 0;
 	}
 
 }

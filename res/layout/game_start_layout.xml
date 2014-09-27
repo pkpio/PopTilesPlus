@@ -30,8 +30,8 @@
             android:layout_height="@dimen/button_height"
             android:layout_weight="0.3"
             android:contentDescription="@string/game_score_title"
-            android:onClick="showAchievements"
-            android:src="@drawable/icon_achievement" />
+            android:onClick="showPlayServices"
+            android:src="@drawable/icon_leaderboard" />
 
         <ImageView
             android:id="@+id/gamestart_mode_button"
@@ -47,8 +47,26 @@
             android:layout_height="@dimen/button_height"
             android:layout_weight="0.3"
             android:contentDescription="@string/game_score_title"
-            android:onClick="showLeaderBoards"
-            android:src="@drawable/icon_leaderboard" />
+            android:onClick="toggleChaos"
+            android:src="@drawable/icon_chaos_disabled" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/restart_padding_bottom"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:weightSum="1" >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_weight="1"
+            android:contentDescription="@string/game_score_title"
+            android:onClick="donate"
+            android:src="@drawable/icon_donate" />
     </LinearLayout>
 
 </FrameLayout>

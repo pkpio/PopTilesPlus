@@ -18,7 +18,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
+import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.gms.games.Games;
 import com.google.example.games.basegameutils.BaseGameActivity;
 
@@ -31,13 +34,44 @@ public class MainActivity extends BaseGameActivity {
 	static ImageView gamestartModeView;
 	static Context context;
 	private GamePlayService playService = new GamePlayService();
+	private BillingProcessor donate;
 	private AcheivementUnlocker medalUnlocker;
 	private static Database db;
+
+	// Play Billing related
+	private static final String PRODUCT_ID = "in.co.praveenkumar.poptiles.donate";
+	private static final String LICENSE_KEY = "02425045829981832447";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		// Setup billing
+		donate = new BillingProcessor(this, LICENSE_KEY,
+				new BillingProcessor.IBillingHandler() {
+					@Override
+					public void onProductPurchased(String productId,
+							TransactionDetails details) {
+						Toast.makeText(context, "Thank you :)",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingError(int errorCode, Throwable error) {
+						Toast.makeText(context, "Purchase failed!",
+								Toast.LENGTH_LONG).show();
+					}
+
+					@Override
+					public void onBillingInitialized() {
+					}
+
+					@Override
+					public void onPurchaseHistoryRestored() {
+					}
+				});
+
 		init();
 
 		db = new Database(context);
@@ -159,9 +193,9 @@ public class MainActivity extends BaseGameActivity {
 			@Override
 			public void onClick(DialogInterface dialog, int optionChose) {
 				if (optionChose == 0)
-					showAchievements();
-				else
 					showLeaderBoards();
+				else
+					showAchievements();
 			}
 		});
 		builder.show();
@@ -213,6 +247,10 @@ public class MainActivity extends BaseGameActivity {
 		default:
 			break;
 		}
+	}
+
+	public void donate(View v) {
+		donate.purchase(PRODUCT_ID);
 	}
 
 	/**
