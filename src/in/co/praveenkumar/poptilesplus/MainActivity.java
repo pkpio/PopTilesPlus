@@ -130,7 +130,7 @@ public class MainActivity extends BaseGameActivity {
 
 	public void changeGameMode(View v) {
 		CharSequence playServices[] = new CharSequence[] { "Decimal", "Binary",
-				"Hexadecimal", "Fibonacci" };
+				"Hexadecimal", "Fibonnaci" };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Game mode");
 		builder.setItems(playServices, new DialogInterface.OnClickListener() {
@@ -213,7 +213,8 @@ public class MainActivity extends BaseGameActivity {
 	public void showAchievements() {
 		if (getApiClient().isConnected())
 			startActivityForResult(
-					Games.Achievements.getAchievementsIntent(getApiClient()), 1);
+					Games.Achievements.getAchievementsIntent(getApiClient()),
+					11);
 		else
 			beginUserInitiatedSignIn();
 	}
@@ -226,22 +227,44 @@ public class MainActivity extends BaseGameActivity {
 
 		switch (Session.gameMode) {
 		case Session.GAME_MODE_BIN:
-			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-					getApiClient(), getString(R.string.leaderboard_geek)), 2);
+			if (Session.chaos)
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_geek_chaos)), 1);
+			else
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(), getString(R.string.leaderboard_geek)),
+						2);
 			break;
 		case Session.GAME_MODE_DEC:
-			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-					getApiClient(), getString(R.string.leaderboard_regular)), 3);
+			if (Session.chaos)
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_regular_chaos)), 3);
+			else
+				startActivityForResult(
+						Games.Leaderboards.getLeaderboardIntent(getApiClient(),
+								getString(R.string.leaderboard_regular)), 4);
 			break;
 		case Session.GAME_MODE_HEX:
-			startActivityForResult(
-					Games.Leaderboards.getLeaderboardIntent(getApiClient(),
-							getString(R.string.leaderboard_programmer)), 4);
+			if (Session.chaos)
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_programmer_chaos)), 5);
+			else
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_programmer)), 6);
 			break;
 		case Session.GAME_MODE_FIB:
-			startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
-					getApiClient(), getString(R.string.leaderboard_fibonnaci)),
-					5);
+			if (Session.chaos)
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_fibonnaci_chaos)), 7);
+			else
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_fibonnaci)), 8);
 			break;
 
 		default:
@@ -266,19 +289,38 @@ public class MainActivity extends BaseGameActivity {
 
 			switch (Session.gameMode) {
 			case Session.GAME_MODE_BIN:
-				Games.Leaderboards.submitScore(getApiClient(),
-						getString(R.string.leaderboard_geek), score);
+				if (Session.chaos)
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_geek_chaos), score);
+				else
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_geek), score);
 				break;
 			case Session.GAME_MODE_DEC:
-				Games.Leaderboards.submitScore(getApiClient(),
-						getString(R.string.leaderboard_regular), score);
+				if (Session.chaos)
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_regular_chaos),
+							score);
+				else
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_regular), score);
 				break;
 			case Session.GAME_MODE_HEX:
-				Games.Leaderboards.submitScore(getApiClient(),
-						getString(R.string.leaderboard_programmer), score);
+				if (Session.chaos)
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_programmer_chaos),
+							score);
+				else
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_programmer), score);
 			case Session.GAME_MODE_FIB:
-				Games.Leaderboards.submitScore(getApiClient(),
-						getString(R.string.leaderboard_fibonnaci), score);
+				if (Session.chaos)
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_fibonnaci_chaos),
+							score);
+				else
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_fibonnaci), score);
 				break;
 
 			default:

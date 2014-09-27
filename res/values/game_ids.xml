@@ -8,6 +8,10 @@
     <string name="leaderboard_geek">CggI0a-p5CkQAhAC</string>
     <string name="leaderboard_programmer">CggI0a-p5CkQAhAD</string>
     <string name="leaderboard_fibonnaci">CggI0a-p5CkQAhBD</string>
+    <string name="leaderboard_regular_chaos">CggI0a-p5CkQAhBR</string>
+    <string name="leaderboard_geek_chaos">CggI0a-p5CkQAhBS</string>
+    <string name="leaderboard_programmer_chaos">CggI0a-p5CkQAhBT</string>
+    <string name="leaderboard_fibonnaci_chaos">CggI0a-p5CkQAhBU</string>
 
     <!-- Score Achievements -->
     <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
