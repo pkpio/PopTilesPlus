@@ -4,7 +4,9 @@ import in.co.praveenkumar.poptilesplus.helper.Database;
 import in.co.praveenkumar.poptilesplus.helper.Param;
 import in.co.praveenkumar.poptilesplus.helper.Session;
 import in.co.praveenkumar.poptilesplus.model.Cell;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -93,26 +95,47 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public void changeGameMode(View v) {
-		Bitmap icon = null;
-		if (Session.gameMode == Session.GAME_MODE_DEC) {
-			Session.gameMode = Session.GAME_MODE_BIN;
-			icon = BitmapFactory.decodeResource(context.getResources(),
-					R.drawable.icon_mode_bin);
-		} else if (Session.gameMode == Session.GAME_MODE_BIN) {
-			Session.gameMode = Session.GAME_MODE_HEX;
-			icon = BitmapFactory.decodeResource(context.getResources(),
-					R.drawable.icon_mode_hex);
-		} else if (Session.gameMode == Session.GAME_MODE_HEX) {
-			Session.gameMode = Session.GAME_MODE_FIB;
-			icon = BitmapFactory.decodeResource(context.getResources(),
-					R.drawable.icon_mode_fib);
-		} else if (Session.gameMode == Session.GAME_MODE_FIB) {
-			Session.gameMode = Session.GAME_MODE_DEC;
-			icon = BitmapFactory.decodeResource(context.getResources(),
-					R.drawable.icon_mode_dec);
-		}
-		gameoverModeView.setImageBitmap(icon);
-		gamestartModeView.setImageBitmap(icon);
+		CharSequence playServices[] = new CharSequence[] { "Decimal", "Binary",
+				"Hexadecimal", "Fibonacci" };
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Game mode");
+		builder.setItems(playServices, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int optionChose) {
+				Bitmap icon = null;
+				switch (optionChose) {
+				case 0:
+					Session.gameMode = Session.GAME_MODE_DEC;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_dec);
+					break;
+				case 1:
+					Session.gameMode = Session.GAME_MODE_BIN;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_bin);
+					break;
+				case 2:
+					Session.gameMode = Session.GAME_MODE_HEX;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_hex);
+					break;
+				case 3:
+					Session.gameMode = Session.GAME_MODE_FIB;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_fib);
+					break;
+
+				default:
+					Session.gameMode = Session.GAME_MODE_DEC;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_dec);
+					break;
+				}
+				gameoverModeView.setImageBitmap(icon);
+				gamestartModeView.setImageBitmap(icon);
+			}
+		});
+		builder.show();
 	}
 
 	@Override
@@ -127,7 +150,33 @@ public class MainActivity extends BaseGameActivity {
 
 	}
 
-	public void showAchievements(View v) {
+	public void showPlayServices(View v) {
+		CharSequence playServices[] = new CharSequence[] { "Highscores",
+				"Achievements" };
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Play Services");
+		builder.setItems(playServices, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int optionChose) {
+				if (optionChose == 0)
+					showAchievements();
+				else
+					showLeaderBoards();
+			}
+		});
+		builder.show();
+	}
+
+	public void toggleChaos(View v) {
+		Session.chaos = !Session.chaos;
+		ImageView chaosImageView = (ImageView) v;
+		if (Session.chaos)
+			chaosImageView.setImageResource(R.drawable.icon_chaos_enabled);
+		else
+			chaosImageView.setImageResource(R.drawable.icon_chaos_disabled);
+	}
+
+	public void showAchievements() {
 		if (getApiClient().isConnected())
 			startActivityForResult(
 					Games.Achievements.getAchievementsIntent(getApiClient()), 1);
@@ -135,7 +184,7 @@ public class MainActivity extends BaseGameActivity {
 			beginUserInitiatedSignIn();
 	}
 
-	public void showLeaderBoards(View v) {
+	public void showLeaderBoards() {
 		if (!getApiClient().isConnected()) {
 			beginUserInitiatedSignIn();
 			return;
