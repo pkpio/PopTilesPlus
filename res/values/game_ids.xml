@@ -12,6 +12,8 @@
     <string name="leaderboard_geek_chaos">CggI0a-p5CkQAhBS</string>
     <string name="leaderboard_programmer_chaos">CggI0a-p5CkQAhBT</string>
     <string name="leaderboard_fibonnaci_chaos">CggI0a-p5CkQAhBU</string>
+    <string name="leaderboard_kid">CggI0a-p5CkQAhBV</string>
+    <string name="leaderboard_chaos_kid">CggI0a-p5CkQAhBW</string>
 
     <!-- Score Achievements -->
     <string name="achievement_noob">CggI0a-p5CkQAhAH</string>
