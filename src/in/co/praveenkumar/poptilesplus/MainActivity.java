@@ -54,7 +54,8 @@ public class MainActivity extends BaseGameActivity {
 					@Override
 					public void onProductPurchased(String productId,
 							TransactionDetails details) {
-						Toast.makeText(context, "You donated already. Thank you :)",
+						Toast.makeText(context,
+								"You donated already. Thank you :)",
 								Toast.LENGTH_LONG).show();
 					}
 
@@ -131,7 +132,7 @@ public class MainActivity extends BaseGameActivity {
 
 	public void changeGameMode(View v) {
 		CharSequence playServices[] = new CharSequence[] { "Decimal", "Binary",
-				"Hexadecimal", "Fibonnaci" };
+				"Hexadecimal", "Fibonnaci", "Kid" };
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Game mode");
 		builder.setItems(playServices, new DialogInterface.OnClickListener() {
@@ -158,6 +159,11 @@ public class MainActivity extends BaseGameActivity {
 					Session.gameMode = Session.GAME_MODE_FIB;
 					icon = BitmapFactory.decodeResource(context.getResources(),
 							R.drawable.icon_mode_fib);
+					break;
+				case 4:
+					Session.gameMode = Session.GAME_MODE_KID;
+					icon = BitmapFactory.decodeResource(context.getResources(),
+							R.drawable.icon_mode_kid);
 					break;
 
 				default:
@@ -267,6 +273,16 @@ public class MainActivity extends BaseGameActivity {
 						getApiClient(),
 						getString(R.string.leaderboard_fibonnaci)), 8);
 			break;
+		case Session.GAME_MODE_KID:
+			if (Session.chaos)
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(),
+						getString(R.string.leaderboard_chaos_kid)), 9);
+			else
+				startActivityForResult(Games.Leaderboards.getLeaderboardIntent(
+						getApiClient(), getString(R.string.leaderboard_kid)),
+						10);
+			break;
 
 		default:
 			break;
@@ -337,6 +353,14 @@ public class MainActivity extends BaseGameActivity {
 				else
 					Games.Leaderboards.submitScore(getApiClient(),
 							getString(R.string.leaderboard_fibonnaci), score);
+				break;
+			case Session.GAME_MODE_KID:
+				if (Session.chaos)
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_chaos_kid), score);
+				else
+					Games.Leaderboards.submitScore(getApiClient(),
+							getString(R.string.leaderboard_kid), score);
 				break;
 
 			default:
