@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.co.praveenkumar.poptilesplus"
-    android:versionCode="12"
-    android:versionName="3.0 public release" >
+    android:versionCode="14"
+    android:versionName="3.2 public release" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="9"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="com.android.vending.BILLING" />

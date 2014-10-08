@@ -1,3 +1,12 @@
+V3.2
+----
+	- Support for Gingerbread is back
+	- Chaos mode highscore is seperated from casual
+
+V3.1
+----
+	- Kid mode added
+
 V3.0
 ----
 	- Public release
