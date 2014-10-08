@@ -58,9 +58,16 @@ public class GameGridAdapter extends BaseAdapter {
 					Session.setScore(Session.score() + 1);
 					medalUnlocker.checkForScoreUnlocks();
 					Session.cells[position].setFilled(false);
-					animate(viewHolder.cellValue).setDuration(
-							Session.alphaDuration());
-					animate(viewHolder.cellValue).alpha(0);
+
+					// Alpha values doesn't behave well for pre ICS
+					if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+						animate(viewHolder.cellValue).setDuration(
+								Session.alphaDuration());
+						animate(viewHolder.cellValue).alpha(0);
+					} else {
+						viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
+					}
+					
 				} else {
 					Session.gamming = false;
 					MainActivity.gameover();
@@ -70,13 +77,23 @@ public class GameGridAdapter extends BaseAdapter {
 			}
 		});
 
-		if (Session.cells[position].isFilled()) {
-			animate(viewHolder.cellValue).setDuration(0);
-			animate(viewHolder.cellValue).alpha(1);
+		// Alpha values doesn't behave well for pre ICS
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+			if (Session.cells[position].isFilled()) {
+				animate(viewHolder.cellValue).setDuration(0);
+				animate(viewHolder.cellValue).alpha(1);
+			} else {
+				animate(viewHolder.cellValue).setDuration(
+						Session.alphaDuration());
+				animate(viewHolder.cellValue).alpha(0);
+			}
 		} else {
-			animate(viewHolder.cellValue).setDuration(Session.alphaDuration());
-			animate(viewHolder.cellValue).alpha(0);
+			if (Session.cells[position].isFilled())
+				viewHolder.cellValue.setVisibility(TextView.VISIBLE);
+			else
+				viewHolder.cellValue.setVisibility(TextView.INVISIBLE);
 		}
+
 		String cellVal = NumberFormat.out(Session.cells[position].getValue());
 		// Adjust font size based on length of string
 		viewHolder.cellValue.setTextSize(TypedValue.COMPLEX_UNIT_SP,
