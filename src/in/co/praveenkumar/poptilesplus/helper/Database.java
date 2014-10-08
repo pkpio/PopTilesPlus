@@ -25,7 +25,11 @@ public class Database {
 	 * @return score
 	 */
 	public int getHighscore(int gameMode) {
-		return appSharedPrefs.getInt("highscore" + gameMode, 0);
+		if (!Session.chaos)
+			return appSharedPrefs.getInt("highscore" + gameMode, 0);
+		else
+			return appSharedPrefs.getInt("highscore_chaos" + gameMode, 0);
+
 	}
 
 	/**
@@ -34,7 +38,10 @@ public class Database {
 	 * @param score
 	 */
 	public void setHighscore(int score, int gameMode) {
-		prefsEditor.putInt("highscore" + gameMode, score);
+		if (!Session.chaos)
+			prefsEditor.putInt("highscore" + gameMode, score);
+		else
+			prefsEditor.putInt("highscore_chaos" + gameMode, score);
 		prefsEditor.commit();
 	}
 
