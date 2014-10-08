@@ -209,6 +209,17 @@ public class MainActivity extends BaseGameActivity {
 	}
 
 	public void toggleChaos(View v) {
+		// No chaos mode for pre ICS
+		if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+			Toast.makeText(this,
+					"Sorry! Chaos mode not supported by your Android version.",
+					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,
+					"Try on a different device! It's double fun, we promise!",
+					Toast.LENGTH_LONG).show();
+			return;
+		}
+
 		Session.chaos = !Session.chaos;
 		ImageView chaosImageView = (ImageView) v;
 		if (Session.chaos)
