@@ -1,8 +1,6 @@
 #PopTilesPlus
-===========
-
-An extended version of the game pop tiles
-
+---------------
+An extended version of the game PopTiles.
 Check application on [Playstore](https://play.google.com/store/apps/details?id=in.co.praveenkumar.poptilesplus)
 
 
